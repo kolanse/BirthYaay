@@ -19,12 +19,12 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.example.birthyay", appContext.packageName)
+        assertEquals("com.example.birthyaay", appContext.packageName)
     }
 
 
     @Test
     fun addition_isCorrect() {
-        assertEquals(5, 2 + 2)
+        assertEquals(4, 2 + 2)
     }
 }
