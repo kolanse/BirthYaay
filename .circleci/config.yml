@@ -14,3 +14,4 @@ workflows:
           system-image: system-images;android-29;default;x86
 
       - android/run-tests:
+          system-image: system-images;android-29;default;x86
