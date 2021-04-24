@@ -1,2 +1,3 @@
 rootProject.name = "BirthYaay"
-include ':app'
+include ':mobile-ui'
+include ':presentation'
