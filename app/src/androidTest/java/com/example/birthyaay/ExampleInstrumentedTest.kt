@@ -21,4 +21,10 @@ class ExampleInstrumentedTest {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("com.example.birthyay", appContext.packageName)
     }
+
+
+    @Test
+    fun addition_isCorrect() {
+        assertEquals(5, 2 + 2)
+    }
 }
