@@ -13,5 +13,10 @@ workflows:
           # to execute custom steps before and afer any of the built-in steps
           system-image: system-images;android-29;default;x86
 
-      - name: Unit Tests
-        run: ./gradlew test
+      unit_tests:
+        runs-on: [ ubuntu-latest ]
+        steps:
+          - uses: actions/checkout@v2
+
+          - name: Unit tests
+            run: ./gradlew test
