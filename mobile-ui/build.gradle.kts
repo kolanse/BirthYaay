@@ -43,6 +43,9 @@ dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     //app libs
     implementation(AppDependencies.appLibraries)
+
+    //project libraries
+    implementation(project(AppDependencies.presentation))
     //test libs
     testImplementation(AppDependencies.testLibraries)
     androidTestImplementation(AppDependencies.androidTestLibraries)

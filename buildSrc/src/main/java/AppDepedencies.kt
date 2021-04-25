@@ -17,6 +17,13 @@ object AppDependencies {
     private val extJUnit = "androidx.test.ext:junit:${Versions.extJunit}"
     private val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espresso}"
 
+
+    //Project Libraries
+    val presentation = ":presentation"
+
+
+
+
     val appLibraries = arrayListOf<String>().apply {
         add(kotlinStdLib)
         add(coreKtx)
