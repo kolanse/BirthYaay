@@ -3,6 +3,7 @@ import AppConfig.buildToolsVersion
 plugins {
     id("com.android.application")
     kotlin("android")
+
 }
 
  android {
@@ -38,7 +39,7 @@ plugins {
 }
 
 dependencies {
-    //implementation project(':presentation')
+
     //std lib
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     //app libs
@@ -50,3 +51,4 @@ dependencies {
     testImplementation(AppDependencies.testLibraries)
     androidTestImplementation(AppDependencies.androidTestLibraries)
 }
+

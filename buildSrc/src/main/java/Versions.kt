@@ -8,6 +8,7 @@ object Versions {
     val appcompat = "1.3.0-alpha01"
     val constraintLayout = "2.0.0-beta8"
     val materialDesign = "1.3.0"
+    val ktLint = "10.0.0"
 
     //test
     val junit = "4.12"
