@@ -42,11 +42,20 @@ dependencies {
 
     //std lib
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+
+    //core libs
+
+    implementation(AppDependencies.coreLibrary)
     //app libs
     implementation(AppDependencies.appLibraries)
 
     //project libraries
     implementation(project(AppDependencies.presentation))
+    implementation(project(AppDependencies.cache))
+    implementation(project(AppDependencies.data))
+    implementation(project(AppDependencies.domain))
+    implementation(project(AppDependencies.remote))
+
     //test libs
     testImplementation(AppDependencies.testLibraries)
     androidTestImplementation(AppDependencies.androidTestLibraries)

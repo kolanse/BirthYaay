@@ -20,13 +20,22 @@ object AppDependencies {
 
     //Project Libraries
     val presentation = ":presentation"
+    val cache = ":cache"
+    val data = ":data"
+    val domain = ":domain"
+    val remote = ":remote"
 
 
 
 
-    val appLibraries = arrayListOf<String>().apply {
+    val coreLibrary = arrayListOf<String>().apply{
         add(kotlinStdLib)
         add(coreKtx)
+    }
+
+    val appLibraries = arrayListOf<String>().apply {
+
+
         add(appcompat)
         add(constraintLayout)
         add(materialDesign)

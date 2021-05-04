@@ -21,8 +21,8 @@ android {
         getByName("release") {
             isMinifyEnabled = false
             proguardFiles(
-                    getDefaultProguardFile("proguard-android-optimize.txt"),
-                    "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
             )
         }
     }
@@ -36,8 +36,7 @@ android {
 }
 
 dependencies {
-
-    //std lib
+//std lib
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     //core libs
     implementation(AppDependencies.coreLibrary)
