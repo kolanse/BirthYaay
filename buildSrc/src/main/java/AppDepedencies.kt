@@ -75,3 +75,9 @@ fun DependencyHandler.testImplementation(list: List<String>) {
         add("testImplementation", dependency)
     }
 }
+
+ object PluginDepedencies {
+     //plugins
+     val androidApplication = "com.android.application"
+     val kotAndroid = "android"
+ }

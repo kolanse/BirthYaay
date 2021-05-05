@@ -1,8 +1,8 @@
 import AppConfig.buildToolsVersion
 
 plugins {
-    id("com.android.application")
-    kotlin("android")
+    id(PluginDepedencies.androidApplication)
+    kotlin(PluginDepedencies.kotAndroid)
 
 }
 
