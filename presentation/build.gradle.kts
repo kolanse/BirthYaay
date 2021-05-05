@@ -1,23 +1,20 @@
-import AppConfig.buildToolsVersion
-
 plugins {
-    id("com.android.application")
-    kotlin("android")
-
+    id  ("com.android.library")
+    id ("kotlin-android")
 }
 
- android {
+android {
     compileSdkVersion(AppConfig.compileSdk)
     buildToolsVersion(AppConfig.buildToolsVersion)
 
     defaultConfig {
-        applicationId = "com.example.birthyaay"
         minSdkVersion(AppConfig.minSdk)
         targetSdkVersion(AppConfig.targetSdk)
         versionCode = AppConfig.versionCode
         versionName = AppConfig.versionName
 
         testInstrumentationRunner = AppConfig.androidTestInstrumentation
+
     }
 
     buildTypes {
@@ -42,22 +39,10 @@ dependencies {
 
     //std lib
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-
     //core libs
-
     implementation(AppDependencies.coreLibrary)
-    //app libs
-    implementation(AppDependencies.appLibraries)
 
-    //project libraries
-    implementation(project(AppDependencies.presentation))
-    implementation(project(AppDependencies.cache))
-    implementation(project(AppDependencies.data))
-    implementation(project(AppDependencies.domain))
-    implementation(project(AppDependencies.remote))
 
-    //test libs
     testImplementation(AppDependencies.testLibraries)
     androidTestImplementation(AppDependencies.androidTestLibraries)
 }
-
