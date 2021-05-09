@@ -1,4 +1,6 @@
-package com.example.birthyaay.custom_views.textviews
+package com.example.birthyaay.custom_views.textviews.shimmer
+
+import com.example.birthyaay.custom_views.textviews.shimmer.ShimmerHelper
 
 interface ShimmerViewBase {
     fun getGradientX(): Float

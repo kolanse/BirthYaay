@@ -1,4 +1,4 @@
-package com.example.birthyaay.custom_views.textviews
+package com.example.birthyaay.custom_views.textviews.shimmer
 
 import android.content.Context
 import android.content.res.ColorStateList
