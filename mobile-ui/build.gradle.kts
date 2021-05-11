@@ -1,8 +1,11 @@
 import AppConfig.buildToolsVersion
 
 plugins {
-    id("com.android.application")
-    kotlin("android")
+    id(PluginDepedencies.androidApplication)
+    kotlin(PluginDepedencies.kotAndroid)
+    id(PluginDepedencies.kotlin_kapt)
+    id(PluginDepedencies.dagger_hilt)
+
 
 }
 
@@ -59,5 +62,9 @@ dependencies {
     //test libs
     testImplementation(AppDependencies.testLibraries)
     androidTestImplementation(AppDependencies.androidTestLibraries)
+
+    //dagger Hilt
+    implementation(AppDependencies.daggerHiltImplementation)
+    kapt(AppDependencies.daggerHiltKapt)
 }
 

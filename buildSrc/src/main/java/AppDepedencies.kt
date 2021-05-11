@@ -17,6 +17,16 @@ object AppDependencies {
     private val extJUnit = "androidx.test.ext:junit:${Versions.extJunit}"
     private val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espresso}"
 
+    // coroutines test
+    val standardCoroutineCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines_test}"
+    val standardCoroutineAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines_test}"
+    val coroutineUnitTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines_test}"
+    val coroutineAndroidTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines_test}"
+
+    //arch core test
+    val archCoreTest = "androidx.arch.core:core-testing:${Versions.arch_core}"
+
+
 
     //Project Libraries
     val presentation = ":presentation"
@@ -26,7 +36,15 @@ object AppDependencies {
     val remote = ":remote"
 
 
+     //Dagger hilt
+    val daggerHiltImplementation = "com.google.dagger:hilt-android:${Versions.hilt_version}"
+    val daggerHiltKapt = "com.google.dagger:hilt-compiler:${Versions.hilt_version}"
 
+    // Room depedencies
+    val roomImpl = "androidx.room:room-runtime:${Versions.room_version}"
+    val roomKapt = "androidx.room:room-compiler:${Versions.room_version}"
+    val roomCoroutine = "androidx.room:room-ktx:${Versions.room_version}"
+    val roomTest = "androidx.room:room-testing:${Versions.room_version}"
 
     val coreLibrary = arrayListOf<String>().apply{
         add(kotlinStdLib)
@@ -75,3 +93,11 @@ fun DependencyHandler.testImplementation(list: List<String>) {
         add("testImplementation", dependency)
     }
 }
+
+ object PluginDepedencies {
+     //plugins
+     val androidApplication = "com.android.application"
+     val kotAndroid = "android"
+     val kotlin_kapt = "kotlin-kapt"
+     val dagger_hilt = "dagger.hilt.android.plugin"
+ }
