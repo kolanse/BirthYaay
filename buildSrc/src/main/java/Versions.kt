@@ -11,6 +11,8 @@ object Versions {
     val ktLint = "10.0.0"
     val hilt_version = "2.35"
     val room_version = "2.3.0"
+    val nav_version = "2.3.5"
+    val activityKtx = "1.2.0-alpha03"
 
     //test
     val junit = "4.12"

@@ -11,11 +11,16 @@ object AppDependencies {
     private val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
     private val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
     private val materialDesign = "com.google.android.material:material:${Versions.materialDesign}"
+    private val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.nav_version}"
+    private val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.nav_version}"
+
 
     //test libs
     private val junit = "junit:junit:${Versions.junit}"
     private val extJUnit = "androidx.test.ext:junit:${Versions.extJunit}"
     private val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espresso}"
+    private val navigationTest = "androidx.navigation:navigation-testing:${Versions.nav_version}"
+    private val activityKtx = "androidx.activity:activity-ktx:${Versions.activityKtx}"
 
     // coroutines test
     val standardCoroutineCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines_test}"
@@ -34,6 +39,7 @@ object AppDependencies {
     val data = ":data"
     val domain = ":domain"
     val remote = ":remote"
+    val navigation = ":navigation"
 
 
      //Dagger hilt
@@ -49,19 +55,21 @@ object AppDependencies {
     val coreLibrary = arrayListOf<String>().apply{
         add(kotlinStdLib)
         add(coreKtx)
+        add(activityKtx)
     }
 
     val appLibraries = arrayListOf<String>().apply {
-
-
         add(appcompat)
         add(constraintLayout)
         add(materialDesign)
+        add(navigationFragment)
+        add(navigationUi)
     }
 
     val androidTestLibraries = arrayListOf<String>().apply {
         add(extJUnit)
         add(espressoCore)
+        add(navigationTest)
     }
 
     val testLibraries = arrayListOf<String>().apply {

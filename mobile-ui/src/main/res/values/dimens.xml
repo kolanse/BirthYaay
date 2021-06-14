@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="eight_pixel">8dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="text_margin">24dp</dimen>
+    <dimen name="margin_75">75dp</dimen>
+    <dimen name="text_size_20">20sp</dimen>
+    <dimen name="margin_24">24dp</dimen>
+    <dimen name="size_8">8dp</dimen>
+    <dimen name="text_size_14">14sp</dimen>
+    <dimen name="size_15">15dp</dimen>
+    <dimen name="text_size_18">18sp</dimen>
+    <dimen name="size_20">20dp</dimen>
+</resources>

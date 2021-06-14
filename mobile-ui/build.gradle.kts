@@ -5,6 +5,7 @@ plugins {
     kotlin(PluginDepedencies.kotAndroid)
     id(PluginDepedencies.kotlin_kapt)
     id(PluginDepedencies.dagger_hilt)
+    id("kotlin-android")
 
 
 }
@@ -22,6 +23,10 @@ plugins {
 
         testInstrumentationRunner = AppConfig.androidTestInstrumentation
     }
+
+     buildFeatures {
+         viewBinding = true
+     }
 
     buildTypes {
         getByName("release") {
@@ -58,6 +63,8 @@ dependencies {
     implementation(project(AppDependencies.data))
     implementation(project(AppDependencies.domain))
     implementation(project(AppDependencies.remote))
+    implementation(project(AppDependencies.navigation))
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
 
     //test libs
     testImplementation(AppDependencies.testLibraries)
