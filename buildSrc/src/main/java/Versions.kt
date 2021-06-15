@@ -13,6 +13,7 @@ object Versions {
     val room_version = "2.3.0"
     val nav_version = "2.3.5"
     val activityKtx = "1.2.0-alpha03"
+    val lottieVersion = "3.7.0"
 
     //test
     val junit = "4.12"

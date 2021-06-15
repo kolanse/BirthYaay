@@ -97,4 +97,8 @@
     <string name="good_morning_str">Good Morning!</string>
     <string name="search_celebrant_str">Search celebrant</string>
     <string name="add_a_birthday_str">Add a birthday</string>
+    <string name="yaay_str">Yaay!</string>
+    <string name="dummy_date_str">00. 00. 0000</string>
+    <string name="zero_str">0</string>
+    <string name="days_left_str">days left</string>
 </resources>

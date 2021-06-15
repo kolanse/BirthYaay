@@ -13,6 +13,7 @@ object AppDependencies {
     private val materialDesign = "com.google.android.material:material:${Versions.materialDesign}"
     private val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.nav_version}"
     private val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.nav_version}"
+    private val lottieAnimation = "com.airbnb.android:lottie:${Versions.lottieVersion}"
 
 
     //test libs
@@ -64,6 +65,7 @@ object AppDependencies {
         add(materialDesign)
         add(navigationFragment)
         add(navigationUi)
+        add(lottieAnimation)
     }
 
     val androidTestLibraries = arrayListOf<String>().apply {

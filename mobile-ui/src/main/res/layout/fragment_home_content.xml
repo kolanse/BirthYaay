@@ -2,15 +2,19 @@
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginTop="@dimen/size_32"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/parentConstraintLayout"
+        >
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/fragment_home_add_birthday_cv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:cardCornerRadius="10dp"
@@ -20,8 +24,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/content_birthday_bg_iv"
@@ -33,10 +36,24 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/animationView"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/content_bg_iv"
+                    app:layout_constraintEnd_toEndOf="@id/content_bg_iv"
+                    app:layout_constraintStart_toStartOf="@id/content_bg_iv"
+                    app:layout_constraintTop_toTopOf="@id/content_birthday_bg_iv"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/animation"
+                    app:lottie_repeatMode="reverse" />
+
+
                 <ImageView
                     android:id="@+id/content_bg_iv"
-                    android:layout_width="309dp"
-                    android:layout_height="320dp"
+                    android:layout_width="@dimen/size_309"
+                    android:layout_height="@dimen/size_320dp"
                     android:alpha="0.6"
                     android:src="@drawable/overlay_bg"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -55,11 +72,11 @@
                     app:layout_constraintTop_toTopOf="@id/content_birthday_bg_iv">
 
                     <TextView
-                        android:id="@+id/textView"
+                        android:id="@+id/fragment_content_yaay_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/cookie"
-                        android:text="Yaay!"
+                        android:text="@string/yaay_str"
                         android:textColor="@color/white"
                         android:textSize="36sp" />
 
@@ -73,6 +90,7 @@
                 </LinearLayout>
 
                 <ImageView
+                    android:id="@+id/imageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_cake"
@@ -85,7 +103,7 @@
                     android:id="@+id/content_add_birthday_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="24dp"
+                    android:layout_marginBottom="@dimen/margin_24"
                     android:fontFamily="@font/harmattan"
                     android:text="@string/add_a_birthday_str"
                     android:textColor="@color/white"
@@ -100,6 +118,18 @@
 
 
         </androidx.cardview.widget.CardView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/fragment_home_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_12"
+            tools:listitem="@layout/celebrant_birthday_item"
+            app:layout_constraintTop_toBottomOf="@id/fragment_home_add_birthday_cv"
+            app:layout_constraintEnd_toEndOf="@id/parentConstraintLayout"
+            app:layout_constraintStart_toStartOf="@id/parentConstraintLayout"
+            app:layout_constraintBottom_toBottomOf="@+id/parentConstraintLayout" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
