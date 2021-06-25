@@ -1,136 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginTop="@dimen/size_32"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/parentConstraintLayout"
-        >
+        android:layout_height="match_parent">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/fragment_home_add_birthday_cv"
-            android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/parentConstraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:id="@+id/celebrant_card_layout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="10dp"
+            android:layout_marginTop="48dp"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.cardview.widget.CardView
+                android:id="@+id/fragment_home_add_birthday_cv"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:cardCornerRadius="@dimen/size_10"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
-                    android:id="@+id/content_birthday_bg_iv"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/birthday_background"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <com.airbnb.lottie.LottieAnimationView
-                    android:id="@+id/animationView"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/content_bg_iv"
-                    app:layout_constraintEnd_toEndOf="@id/content_bg_iv"
-                    app:layout_constraintStart_toStartOf="@id/content_bg_iv"
-                    app:layout_constraintTop_toTopOf="@id/content_birthday_bg_iv"
-                    app:lottie_autoPlay="true"
-                    app:lottie_loop="true"
-                    app:lottie_rawRes="@raw/animation"
-                    app:lottie_repeatMode="reverse" />
-
-
-                <ImageView
-                    android:id="@+id/content_bg_iv"
-                    android:layout_width="@dimen/size_309"
-                    android:layout_height="@dimen/size_320dp"
-                    android:alpha="0.6"
-                    android:src="@drawable/overlay_bg"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <LinearLayout
-                    android:id="@+id/linearLayout"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_24"
-                    android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="@id/content_birthday_bg_iv"
-                    app:layout_constraintStart_toStartOf="@id/content_birthday_bg_iv"
-                    app:layout_constraintTop_toTopOf="@id/content_birthday_bg_iv">
-
-                    <TextView
-                        android:id="@+id/fragment_content_yaay_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/cookie"
-                        android:text="@string/yaay_str"
-                        android:textColor="@color/white"
-                        android:textSize="36sp" />
+                    android:layout_height="wrap_content">
 
                     <ImageView
-                        android:id="@+id/confetti_iv"
+                        android:id="@+id/content_birthday_bg_iv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/birthday_background"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/animationView"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/content_bg_iv"
+                        app:layout_constraintEnd_toEndOf="@id/content_bg_iv"
+                        app:layout_constraintStart_toStartOf="@id/content_bg_iv"
+                        app:layout_constraintTop_toTopOf="@id/content_birthday_bg_iv"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/animation"
+                        app:lottie_repeatMode="reverse" />
+
+
+                    <ImageView
+                        android:id="@+id/content_bg_iv"
+                        android:layout_width="@dimen/size_209"
+                        android:layout_height="@dimen/size_250dp"
+                        android:alpha="0.6"
+                        android:src="@drawable/overlay_bg"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:paddingStart="@dimen/size_8"
-                        android:src="@drawable/ic_confetti" />
-                </LinearLayout>
+                        android:layout_marginTop="@dimen/margin_24"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="@id/content_birthday_bg_iv"
+                        app:layout_constraintStart_toStartOf="@id/content_birthday_bg_iv"
+                        app:layout_constraintTop_toTopOf="@id/content_birthday_bg_iv">
 
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_cake"
-                    app:layout_constraintBottom_toTopOf="@+id/content_add_birthday_tv"
-                    app:layout_constraintEnd_toEndOf="@id/content_birthday_bg_iv"
-                    app:layout_constraintStart_toStartOf="@id/content_birthday_bg_iv"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+                        <TextView
+                            android:id="@+id/fragment_content_yaay_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/cookie"
+                            android:text="@string/yaay_str"
+                            android:textColor="@color/white"
+                            android:textSize="36sp" />
 
-                <TextView
-                    android:id="@+id/content_add_birthday_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_24"
-                    android:fontFamily="@font/harmattan"
-                    android:text="@string/add_a_birthday_str"
-                    android:textColor="@color/white"
+                        <ImageView
+                            android:id="@+id/confetti_iv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:paddingStart="@dimen/size_8"
+                            android:src="@drawable/ic_confetti" />
+                    </LinearLayout>
 
-                    android:textSize="@dimen/text_size_24"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/content_birthday_bg_iv"
-                    app:layout_constraintEnd_toEndOf="@+id/content_birthday_bg_iv"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_cake"
+                        app:layout_constraintBottom_toTopOf="@+id/content_add_birthday_tv"
+                        app:layout_constraintEnd_toEndOf="@id/content_birthday_bg_iv"
+                        app:layout_constraintStart_toStartOf="@id/content_birthday_bg_iv"
+                        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:id="@+id/content_add_birthday_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_24"
+                        android:fontFamily="@font/harmattan"
+                        android:text="@string/add_a_birthday_str"
+                        android:textColor="@color/white"
+
+                        android:textSize="@dimen/text_size_24"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/content_birthday_bg_iv"
+                        app:layout_constraintEnd_toEndOf="@+id/content_birthday_bg_iv"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/current_celebrant_horizontal_vp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/fragment_home_upcoming_birthday_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_24"
+            android:layout_marginTop="48dp"
+            android:fontFamily="@font/montserrat"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:text="@string/upcoming_birthdays_str"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/celebrant_card_layout" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/keep_friend_str"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/fragment_home_upcoming_birthday_tv"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_home_upcoming_birthday_tv" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/fragment_home_rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size_12"
-            tools:listitem="@layout/celebrant_birthday_item"
-            app:layout_constraintTop_toBottomOf="@id/fragment_home_add_birthday_cv"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="@dimen/size_20"
+            app:layout_constraintBottom_toBottomOf="@+id/parentConstraintLayout"
             app:layout_constraintEnd_toEndOf="@id/parentConstraintLayout"
             app:layout_constraintStart_toStartOf="@id/parentConstraintLayout"
-            app:layout_constraintBottom_toBottomOf="@+id/parentConstraintLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            tools:listitem="@layout/celebrant_birthday_item" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    </androidx.core.widget.NestedScrollView>
 
-</androidx.core.widget.NestedScrollView>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fragment_home_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        app:borderWidth="0dp"
+        android:elevation="@dimen/size_4"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="@dimen/size_16"
+        android:layout_marginBottom="@dimen/size_16"
+        android:backgroundTint="@color/purple_100"
+        android:src="@drawable/ic_add"
+        app:tint="@color/white" />
+
+
+</RelativeLayout>

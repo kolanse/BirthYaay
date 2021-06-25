@@ -1,17 +1,15 @@
-package com.example.birthyaay
+package com.example.birthyaay.ui
 
 import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
-import androidx.navigation.NavDeepLinkBuilder
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import com.example.birthyaay.R
 import com.example.navigation.navigation.Navigator
-import com.example.remote.CheckingHilt
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 
 @AndroidEntryPoint

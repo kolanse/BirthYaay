@@ -9,11 +9,18 @@ object AppDependencies {
     //android ui
     private val appcompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
     private val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
-    private val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
+    private val constraintLayout =
+        "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
     private val materialDesign = "com.google.android.material:material:${Versions.materialDesign}"
-    private val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.nav_version}"
+    private val navigationFragment =
+        "androidx.navigation:navigation-fragment-ktx:${Versions.nav_version}"
     private val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.nav_version}"
     private val lottieAnimation = "com.airbnb.android:lottie:${Versions.lottieVersion}"
+    private val amulLibrary =
+        "com.amulyakhare:com.amulyakhare.textdrawable:${Versions.amulLibraryVersion}"
+    val glide = "com.github.bumptech.glide:${Versions.glideVersion}"
+    val glideCore = "android.arch.lifecycle:compiler:1.0.0"
+    val glideAnnotationProcessor = "com.github.bumptech.glide:compiler:${Versions.glideVersion}"
 
 
     //test libs
@@ -24,14 +31,17 @@ object AppDependencies {
     private val activityKtx = "androidx.activity:activity-ktx:${Versions.activityKtx}"
 
     // coroutines test
-    val standardCoroutineCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines_test}"
-    val standardCoroutineAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines_test}"
-    val coroutineUnitTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines_test}"
-    val coroutineAndroidTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines_test}"
+    val standardCoroutineCore =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines_test}"
+    val standardCoroutineAndroid =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines_test}"
+    val coroutineUnitTest =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines_test}"
+    val coroutineAndroidTest =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines_test}"
 
     //arch core test
     val archCoreTest = "androidx.arch.core:core-testing:${Versions.arch_core}"
-
 
 
     //Project Libraries
@@ -43,7 +53,7 @@ object AppDependencies {
     val navigation = ":navigation"
 
 
-     //Dagger hilt
+    //Dagger hilt
     val daggerHiltImplementation = "com.google.dagger:hilt-android:${Versions.hilt_version}"
     val daggerHiltKapt = "com.google.dagger:hilt-compiler:${Versions.hilt_version}"
 
@@ -53,7 +63,8 @@ object AppDependencies {
     val roomCoroutine = "androidx.room:room-ktx:${Versions.room_version}"
     val roomTest = "androidx.room:room-testing:${Versions.room_version}"
 
-    val coreLibrary = arrayListOf<String>().apply{
+
+    val coreLibrary = arrayListOf<String>().apply {
         add(kotlinStdLib)
         add(coreKtx)
         add(activityKtx)
@@ -66,6 +77,8 @@ object AppDependencies {
         add(navigationFragment)
         add(navigationUi)
         add(lottieAnimation)
+        add(amulLibrary)
+        //add(glide)
     }
 
     val androidTestLibraries = arrayListOf<String>().apply {
@@ -86,11 +99,19 @@ fun DependencyHandler.kapt(list: List<String>) {
     }
 }
 
+
 fun DependencyHandler.implementation(list: List<String>) {
     list.forEach { dependency ->
         add("implementation", dependency)
     }
 }
+
+fun DependencyHandler.annotationProcessor(list: List<String>) {
+    list.forEach { dependency ->
+        add("annotationProcessor", dependency)
+    }
+}
+
 
 fun DependencyHandler.androidTestImplementation(list: List<String>) {
     list.forEach { dependency ->
@@ -104,10 +125,10 @@ fun DependencyHandler.testImplementation(list: List<String>) {
     }
 }
 
- object PluginDepedencies {
-     //plugins
-     val androidApplication = "com.android.application"
-     val kotAndroid = "android"
-     val kotlin_kapt = "kotlin-kapt"
-     val dagger_hilt = "dagger.hilt.android.plugin"
- }
+object PluginDepedencies {
+    //plugins
+    val androidApplication = "com.android.application"
+    val kotAndroid = "android"
+    val kotlin_kapt = "kotlin-kapt"
+    val dagger_hilt = "dagger.hilt.android.plugin"
+}

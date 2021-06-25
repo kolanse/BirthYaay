@@ -6,8 +6,6 @@ plugins {
     id(PluginDepedencies.kotlin_kapt)
     id(PluginDepedencies.dagger_hilt)
     id("kotlin-android")
-
-
 }
 
  android {
@@ -57,6 +55,7 @@ dependencies {
     //app libs
     implementation(AppDependencies.appLibraries)
 
+
     //project libraries
     implementation(project(AppDependencies.presentation))
     implementation(project(AppDependencies.cache))
@@ -65,6 +64,7 @@ dependencies {
     implementation(project(AppDependencies.remote))
     implementation(project(AppDependencies.navigation))
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation("io.coil-kt:coil:${Versions.coilVersion}")
 
     //test libs
     testImplementation(AppDependencies.testLibraries)
