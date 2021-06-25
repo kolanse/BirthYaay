@@ -15,4 +15,5 @@
     <string name="days_left_str">days left</string>
     <string name="upcoming_birthdays_str">Upcoming Birthdays</string>
     <string name="keep_friend_str">Keep your loved ones\' special dates in mind.</string>
+    <string name="no_celebrant_yet">No celebrant yet</string>
 </resources>

@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/size_12"
                 android:fontFamily="@font/montserrat"
-                android:text="No celebrant yet"
+                android:text="@string/no_celebrant_yet"
                 android:elevation="@dimen/size_2"
                 android:textSize="12sp"
                 android:textStyle="bold"
