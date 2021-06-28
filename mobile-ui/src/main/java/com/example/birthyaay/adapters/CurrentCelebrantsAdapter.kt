@@ -14,6 +14,7 @@ class CurrentCelebrantsAdapter(
     private val onCallClick: (CurrentCelebrant) -> Unit
     ) : RecyclerView.Adapter<CurrentCelebrantViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CurrentCelebrantViewHolder {
+
         val binding = CurrentCelebrantItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CurrentCelebrantViewHolder(binding,
             onShareClick ={ currentCelebrants ->

@@ -17,5 +17,19 @@
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/state_colors</item>
+        <item name="hintTextColor">@color/state_colors</item>
+    </style>
+
+    <style name="EditTextThemeOverlay" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">@color/purple_100</item>
+    </style>
+
+    <style name="AutoCompleteEditTextStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="boxStrokeColor">@color/state_colors</item>
+        <item name="hintTextColor">@color/state_colors</item>
+    </style>
+
 
 </resources>

@@ -30,19 +30,19 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
 
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/animationView"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="@+id/current_celebrant_image_iv"
-                app:layout_constraintEnd_toEndOf="@id/current_celebrant_image_iv"
-                app:layout_constraintStart_toStartOf="@id/current_celebrant_image_iv"
-                app:layout_constraintTop_toTopOf="@id/current_celebrant_image_iv"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="true"
-                app:lottie_rawRes="@raw/animation"
-                app:lottie_repeatCount="1"
-                app:lottie_repeatMode="restart" />
+<!--            <com.airbnb.lottie.LottieAnimationView-->
+<!--                android:id="@+id/animationView"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="0dp"-->
+<!--                app:layout_constraintBottom_toBottomOf="@+id/current_celebrant_image_iv"-->
+<!--                app:layout_constraintEnd_toEndOf="@id/current_celebrant_image_iv"-->
+<!--                app:layout_constraintStart_toStartOf="@id/current_celebrant_image_iv"-->
+<!--                app:layout_constraintTop_toTopOf="@id/current_celebrant_image_iv"-->
+<!--                app:lottie_autoPlay="true"-->
+<!--                app:lottie_loop="true"-->
+<!--                app:lottie_rawRes="@raw/animation"-->
+<!--                app:lottie_repeatCount="1"-->
+<!--                app:lottie_repeatMode="restart" />-->
 
 
             <ImageView
@@ -65,7 +65,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.35000002">
+                app:layout_constraintVertical_bias="0.19999999">
 
                 <TextView
                     android:id="@+id/fragment_content_yaay_tv"

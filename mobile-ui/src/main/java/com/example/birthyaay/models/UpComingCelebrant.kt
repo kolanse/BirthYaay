@@ -1,10 +1,10 @@
 package com.example.birthyaay.models
 
 
-
 data class UpComingCelebrant(
-    val celebrantImage: String,
-    val celebrantName: String,
-    val celebrantDateOfBirth: String,
-    val daysLeftToBirthday: String,
-    )
+    var celebrantImage: String? = null,
+    var celebrantName: String? = null,
+    var celebrantDateOfBirth: String? = null,
+    var daysLeftToBirthday: String? = null,
+    var viewType: Int = 0
+)

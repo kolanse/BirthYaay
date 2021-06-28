@@ -4,9 +4,8 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.viewpager2.widget.CompositePageTransformer
-import androidx.viewpager2.widget.MarginPageTransformer
 import com.example.birthyaay.databinding.FragmentHomeBinding
 import com.google.android.material.appbar.AppBarLayout
 import com.example.birthyaay.R
@@ -81,9 +80,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 offscreenPageLimit = 2
                 setPadding(150, 0, 150, 0)
 
-//                val marginTransformer = MarginPageTransformer(5)
-//
-//                setPageTransformer(marginTransformer)
+            }
+
+            fragmentHomeInc.fragmentHomeFab.setOnClickListener {
+               // findNavController().navigate(R.id.addCelebrantFragment)
             }
 
 

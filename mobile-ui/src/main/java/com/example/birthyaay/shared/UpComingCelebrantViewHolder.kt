@@ -8,8 +8,9 @@ import com.amulyakhare.textdrawable.util.ColorGenerator
 import com.example.birthyaay.R
 import com.example.birthyaay.databinding.CelebrantBirthdayItemBinding
 import com.example.birthyaay.models.UpComingCelebrant
+import com.example.birthyaay.util.ColorSelector
 
-class CelebrantViewHolder(
+class UpComingCelebrantViewHolder(
     private val binding: CelebrantBirthdayItemBinding,
     private val onItemClick: (Int, UpComingCelebrant) -> Unit
 ): RecyclerView.ViewHolder(binding.root) {
@@ -23,9 +24,13 @@ class CelebrantViewHolder(
             celebrantDateTv.text = upComingCelebrant.celebrantDateOfBirth
             celebrantRemainingDayTv.text = upComingCelebrant.daysLeftToBirthday
 
-
-            val colorGenerator = ColorGenerator.MATERIAL
-            celebrantInfoPipeCv.backgroundTintList = ColorStateList.valueOf(colorGenerator.randomColor)
+            val nameFirstCharacter = upComingCelebrant.celebrantName?.first()
+            celebrantInfoPipeCv.backgroundTintList =
+                nameFirstCharacter?.let { ColorSelector.selectColorByCharacter(it) }?.let {
+                    ColorStateList.valueOf(
+                        it
+                    )
+                }
 
             root.setOnClickListener {
                 if (adapterPosition != RecyclerView.NO_POSITION )

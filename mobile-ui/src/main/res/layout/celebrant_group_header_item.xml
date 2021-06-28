@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:layout_marginStart="@dimen/size_24"
+    android:layout_marginTop="@dimen/size_32"
+    android:layout_marginBottom="@dimen/size_16"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/celebrant_group_name_iv"
+        android:layout_width="@dimen/size_50"
+        android:layout_height="@dimen/size_50"
+        android:background="@color/white"
+        android:alpha="0.8"
+        />
+
+</LinearLayout>
