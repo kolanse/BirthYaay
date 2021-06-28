@@ -33,7 +33,7 @@ class PeopleFragment() : Fragment(R.layout.fragment_people) {
             fragmentPeopleToolbar.apply {
                 setNavigationIcon(R.drawable.ic_arrow_back)
                 setNavigationOnClickListener {
-                   // findNavController().navigate(R.id.homeFragment)
+                   findNavController().navigate(R.id.homeFragment)
                 }
             }
 

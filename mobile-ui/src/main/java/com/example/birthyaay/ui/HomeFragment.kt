@@ -83,7 +83,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             }
 
             fragmentHomeInc.fragmentHomeFab.setOnClickListener {
-               // findNavController().navigate(R.id.addCelebrantFragment)
+               findNavController().navigate(R.id.addCelebrantFragment)
             }
 
 

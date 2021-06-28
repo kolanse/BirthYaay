@@ -26,7 +26,7 @@ class AddCelebrantFragment : Fragment(R.layout.fragment_add_celebrant) {
 
             fragmentAddCelebrantToolbar.apply {
                 setNavigationOnClickListener {
-                   // findNavController().navigate(R.id.homeFragment)
+                    findNavController().navigate(R.id.homeFragment)
                 }
             }
 
