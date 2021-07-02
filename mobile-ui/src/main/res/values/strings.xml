@@ -27,4 +27,10 @@
     <string name="label_add_celebrant_picture_str">Add celebrant’s picture</string>
     <string name="label_add_a_note_str">Add a note:</string>
     <string name="submit_str">Submit</string>
+    <string name="not_suggested_str">Not Suggested? Add yours...</string>
+    <string name="add_str">Add Interest</string>
+    <string name="interest_already_added_error">%s already added!</string>
+    <string name="empty_interest_error">Empty interest can\'t be added.</string>
+    <string name="empty_gift_error">Empty gift can\'t be added.</string>
+    <string name="add_gift_str">Add Gift</string>
 </resources>

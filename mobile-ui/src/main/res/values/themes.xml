@@ -22,6 +22,7 @@
         <item name="hintTextColor">@color/state_colors</item>
     </style>
 
+
     <style name="EditTextThemeOverlay" parent="ThemeOverlay.AppCompat">
         <item name="colorAccent">@color/purple_100</item>
     </style>
