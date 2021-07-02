@@ -78,6 +78,10 @@ fun BottomNavigationView.checkMenuItem(destinationId: Int) {
     menu.findItem(destinationId)?.isChecked = true
 }
 
+/**
+ * This method helps to create a dropdown for TextInputLayout: [interests, gifts]
+ * */
+
 
 fun Fragment.showPopUpWindow(
     textInputLayout: TextInputLayout,
@@ -92,7 +96,7 @@ fun Fragment.showPopUpWindow(
     val inflater =
         requireContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
-    val view = inflater.inflate(R.layout.interest_pop_up_window, null)
+    val view = inflater.inflate(R.layout.content_pop_up_window, null)
 
     val contentRecyclerView = view.findViewById<RecyclerView>(R.id.content_rv)
     val contentAddLayout = view.findViewById<ConstraintLayout>(R.id.add_content_root)
