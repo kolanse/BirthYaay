@@ -27,4 +27,15 @@
     <string name="label_add_celebrant_picture_str">Add celebrant’s picture</string>
     <string name="label_add_a_note_str">Add a note:</string>
     <string name="submit_str">Submit</string>
+    <string name="not_suggested_str">Not Suggested? Add yours...</string>
+    <string name="add_str">Add Interest</string>
+    <string name="interest_already_added_error">%s already added!</string>
+    <string name="empty_interest_error">Empty interest can\'t be added.</string>
+    <string name="empty_gift_error">Empty gift can\'t be added.</string>
+    <string name="add_gift_str">Add Gift</string>
+    <string name="permission_to_access">Permission to access your %s is required to use this app</string>
+    <string name="permission_required_title">Permission required</string>
+    <string name="okay_str">Ok</string>
+    <string name="permission_refused_message">permission refused</string>
+    <string name="select_a_date">Select a date</string>
 </resources>

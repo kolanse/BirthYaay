@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:weightSum="1"
+    android:layout_marginEnd="@dimen/size_8"
+    android:layout_marginStart="@dimen/size_8"
+    android:layout_marginTop="@dimen/size_4"
+    android:layout_marginBottom="@dimen/size_8"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/content_cb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.05"
+        android:clickable="false"
+        android:enabled="false"
+        android:buttonTint="@color/grey_50"
+        />
+
+    <TextView
+        android:id="@+id/content_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Music"
+        android:layout_weight="0.88"
+        />
+
+    <ImageView
+        android:id="@+id/content_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_interest"
+        android:layout_gravity="center"
+        android:layout_weight="0.07"
+        />
+
+
+</LinearLayout>

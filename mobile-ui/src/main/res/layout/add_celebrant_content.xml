@@ -71,7 +71,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/add_celebrant_date_et"
+                android:id="@+id/add_celebrant_date_til"
                 style="@style/TextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -81,17 +81,18 @@
                 android:hint="@string/date_of_birth_str">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/add_celebrant_date_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableEnd="@drawable/weekly_calendar"
-                    android:enabled="false"
+                    android:cursorVisible="false"
                     android:textCursorDrawable="@null" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/add_celebrant_interest_et"
-                style="@style/AutoCompleteEditTextStyle"
+                android:id="@+id/add_celebrant_interest_til"
+                style="@style/TextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_24"
@@ -99,16 +100,19 @@
                 android:layout_marginBottom="@dimen/size_24"
                 android:hint="@string/label_interests_str">
 
-                <AutoCompleteTextView
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/add_celebrant_interest_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="none" />
+                    android:cursorVisible="false"
+                    android:drawableEnd="@drawable/ic_interest"
+                    android:textCursorDrawable="@null" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/add_celebrant_gifts_et"
-                style="@style/AutoCompleteEditTextStyle"
+                android:id="@+id/add_celebrant_gifts_til"
+                style="@style/TextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_24"
@@ -116,31 +120,58 @@
                 android:layout_marginBottom="@dimen/size_24"
                 android:hint="@string/label_choose_gift_categories_str">
 
-                <AutoCompleteTextView
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/add_celebrant_gift_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="none" />
+                    android:cursorVisible="false"
+                    android:drawableEnd="@drawable/ic_gift_boxes"
+                    android:textCursorDrawable="@null" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/add_celebrant_picture_et"
-                style="@style/TextInputLayoutStyle"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_24"
                 android:layout_marginEnd="@dimen/size_24"
-                android:layout_marginBottom="@dimen/size_24"
-                android:hint="@string/label_add_celebrant_picture_str">
+                android:layout_marginBottom="@dimen/size_24">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/add_celebrant_picture_til"
+                    style="@style/TextInputLayoutStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableEnd="@drawable/gallery_solid"
-                    android:enabled="false"
-                    android:textCursorDrawable="@null" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/add_celebrant_picture_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:cursorVisible="false"
+                        android:drawableEnd="@drawable/gallery_solid"
+                        android:text="@string/label_add_celebrant_picture_str"
+                        android:textColor="@color/dark_grey"
+                        android:textCursorDrawable="@null" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/add_celebrant_remove_bin_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/size_16"
+                    android:src="@drawable/garbage_red"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.80"
+                    tools:visibility="visible" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/add_celebrant_note_et"
@@ -161,6 +192,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/submit_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_24"
