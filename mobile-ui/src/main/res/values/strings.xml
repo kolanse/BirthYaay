@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">BirthYaay</string>
+    <string name="bottom_menu_home_str">Home</string>
+    <string name="bottom_menu_people_str">People</string>
+    <string name="bottom_menu_gift_str">Gifts</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="celebratory_prompt_with_name">It’s %s\'s birthday.</string>
+    <string name="search">search</string>
+    <string name="good_morning_str">Good Morning!</string>
+    <string name="search_celebrant_str">Search celebrant</string>
+    <string name="add_a_birthday_str">Add a birthday</string>
+    <string name="yaay_str">Yaay!</string>
+    <string name="dummy_date_str">00. 00. 0000</string>
+    <string name="zero_str">0</string>
+    <string name="days_left_str">days left</string>
+    <string name="upcoming_birthdays_str">Upcoming Birthdays</string>
+    <string name="keep_friend_str">Keep your loved ones\' special dates in mind.</string>
+    <string name="no_celebrant_yet">No celebrant yet</string>
+    <string name="celebrants_str">Celebrants</string>
+    <string name="add_celebrant_str">Add Celebrant</string>
+    <string name="label_name_str">Name:</string>
+    <string name="label_phone_str">Phone:</string>
+    <string name="label_email_address_str">Email address:</string>
+    <string name="date_of_birth_str">Date Of Birth:</string>
+    <string name="label_interests_str">Interests:</string>
+    <string name="label_choose_gift_categories_str">Choose gift categories</string>
+    <string name="label_add_celebrant_picture_str">Add celebrant’s picture</string>
+    <string name="label_add_a_note_str">Add a note:</string>
+    <string name="submit_str">Submit</string>
 </resources>
