@@ -44,7 +44,7 @@ class InterestsOrGiftsViewHolder(
 
             if ((DataResourceGenerator.listener == DataResourceGenerator.CHECKED_INTEREST
                         && giftOrInterestContent.title != root.context.getString(R.string.not_suggested_str)) ||
-                (DataResourceGenerator.listener == DataResourceGenerator.CHECKED_INTEREST
+                (DataResourceGenerator.listener == DataResourceGenerator.CHECKED_GIFT
                         && giftOrInterestContent.title != root.context.getString(R.string.not_suggested_str))
 
             ) {

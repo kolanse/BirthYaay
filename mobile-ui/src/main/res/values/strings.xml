@@ -33,4 +33,9 @@
     <string name="empty_interest_error">Empty interest can\'t be added.</string>
     <string name="empty_gift_error">Empty gift can\'t be added.</string>
     <string name="add_gift_str">Add Gift</string>
+    <string name="permission_to_access">Permission to access your %s is required to use this app</string>
+    <string name="permission_required_title">Permission required</string>
+    <string name="okay_str">Ok</string>
+    <string name="permission_refused_message">permission refused</string>
+    <string name="select_a_date">Select a date</string>
 </resources>

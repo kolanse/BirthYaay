@@ -1,12 +1,25 @@
 package com.example.birthyaay.util
 
+import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
+import android.content.pm.PackageManager
+import android.content.res.Resources
+import android.net.Uri
+import android.os.Build
 import android.text.SpannableStringBuilder
+import android.util.Log
 import android.view.*
 import android.widget.PopupWindow
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContract
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavOptions
@@ -21,8 +34,51 @@ import com.example.birthyaay.databinding.FragmentPeopleBinding
 import com.example.birthyaay.models.GiftOrInterestContent
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+
+
+
+fun Fragment.showSnackWithMessage(message: String, duration: Int) {
+    Snackbar.make(requireView(), message, duration).show()
+}
+
+fun TextInputEditText.addTextColor(context: Context, color: Int) {
+    setTextColor(ContextCompat.getColor(context, color))
+}
+
+fun TextInputEditText.setCompoundDrawableWithSpecificBounds(left: Int = 0, top: Int = 0, right: Int = 0, bottom: Int = 0){
+    setCompoundDrawablesWithIntrinsicBounds(
+        left,
+        top,
+        right,
+        bottom
+    )
+}
+
+@SuppressLint("ClickableViewAccessibility")
+fun Fragment.pickAndSetDate(editText: TextInputEditText) {
+    val builder: MaterialDatePicker.Builder<*> = MaterialDatePicker.Builder.datePicker()
+    builder.setTitleText(getString(R.string.select_a_date))
+
+    val picker: MaterialDatePicker<*> = builder.build()
+
+    editText.setOnTouchListener { _, _ ->
+        try {
+            picker.show(parentFragmentManager, picker.toString())
+        } catch (e: Exception) {
+            Log.i("VIEW_TAG", e.message.toString())
+        }
+
+        true
+    }
+
+    picker.addOnPositiveButtonClickListener {
+        editText.setText(picker.headerText)
+    }
+}
 
 fun Fragment.isShowOrHideView(isShow: Boolean, binding: ViewBinding) {
 
@@ -77,6 +133,51 @@ fun BottomNavigationView.checkMenuItem(destinationId: Int) {
     }
     menu.findItem(destinationId)?.isChecked = true
 }
+
+
+fun Fragment.checkForPermission(name: String, requestCode: Int,
+                                getContent: ActivityResultLauncher<String>
+) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        when {
+            ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            ) == PackageManager.PERMISSION_GRANTED -> {
+
+                getContent.launch("image/*")
+            }
+            shouldShowRequestPermissionRationale(Manifest.permission.READ_EXTERNAL_STORAGE) ->
+                showRequestPermissionRationaleDialog(Manifest.permission.READ_EXTERNAL_STORAGE, name, requestCode)
+            else -> ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                requestCode
+            )
+        }
+    }
+}
+
+// Show dialog for permission dialog
+fun Fragment.showRequestPermissionRationaleDialog(permission: String, name: String, requestCode: Int) {
+    // Alert dialog box
+    val builder = AlertDialog.Builder(requireContext())
+    builder.apply {
+        // setting alert properties
+        setMessage(getString(R.string.permission_to_access, name))
+        setTitle(getString(R.string.permission_required_title))
+        setPositiveButton(getString(R.string.okay_str)) { _, _ ->
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(permission),
+                requestCode
+            )
+        }
+    }
+    val dialog = builder.create()
+    dialog.show()
+}
+
 
 /**
  * This method helps to create a dropdown for TextInputLayout: [interests, gifts]
