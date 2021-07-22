@@ -9,11 +9,12 @@ import com.example.birthyaay.databinding.CelebrantGroupHeaderItemBinding
 import com.example.birthyaay.models.UpComingCelebrant
 import com.example.birthyaay.shared.GroupAlphabetViewHolder
 import com.example.birthyaay.shared.UpComingCelebrantViewHolder
+import com.example.navigation.navigation.model.Celebrant
 import java.util.*
 
 class UpComingCelebrantAdapter(
-    private val onItemClick: (Int, UpComingCelebrant) -> Unit,
-    private val upComingCelebrantList: MutableList<UpComingCelebrant>
+    private val onItemClick: (Int, Celebrant) -> Unit,
+    private val upComingCelebrantList: MutableList<Celebrant>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 

@@ -8,14 +8,14 @@ import com.example.birthyaay.R
 import com.example.birthyaay.databinding.InterestGiftContentBinding
 import com.example.birthyaay.models.GiftOrInterestContent
 import com.example.birthyaay.shared.InterestsOrGiftsViewHolder
-import com.example.birthyaay.util.ContentType
+import com.example.navigation.navigation.model.ContentType
 import com.example.birthyaay.util.DataResourceGenerator
+import com.example.navigation.navigation.model.Content
 
 class GiftsOrInterestsAdapter(
-    private val onItemClick: (GiftOrInterestContent, Int) -> Unit,
-    private val giftOrInterestContents: MutableList<GiftOrInterestContent>
+    private val onItemClick: (Content, Int) -> Unit,
+    private val contents: MutableList<Content>
 ) : RecyclerView.Adapter<InterestsOrGiftsViewHolder>() {
-
 
     private var context: Context? = null
     private var binding: InterestGiftContentBinding? = null
@@ -29,15 +29,15 @@ class GiftsOrInterestsAdapter(
     }
 
     override fun onBindViewHolder(holder: InterestsOrGiftsViewHolder, position: Int) {
-        holder.bind(giftOrInterestContents[position])
+        holder.bind(contents[position])
     }
 
-    override fun getItemCount(): Int = giftOrInterestContents.size
+    override fun getItemCount(): Int = contents.size
 
-    fun addGiftOrInterest(giftOrInterestContent: GiftOrInterestContent, position: Int) {
-        this.giftOrInterestContents.add(position, giftOrInterestContent)
+    fun addGiftOrInterest(content: Content, position: Int) {
+        this.contents.add(position, content)
 
-        when (giftOrInterestContent.contentType) {
+        when (content.contentType) {
             ContentType.INTEREST -> {
                 DataResourceGenerator.listener = DataResourceGenerator.CHECKED_INTEREST
             }
@@ -55,25 +55,25 @@ class GiftsOrInterestsAdapter(
 
     fun removeAndAddNotSuggestedGiftOrInterest() {
         onItemClick.invoke(
-            GiftOrInterestContent("Not Suggested? Add yours...",
+            Content("Not Suggested? Add yours...",
                 false,
+                ContentType.NEUTRAL,
                 R.drawable.ic_interest,
-                ContentType.NEUTRAL
             ),
-            giftOrInterestContents.lastIndex
+            contents.lastIndex
         )
 
-        for (i in giftOrInterestContents.indices) {
-            if (giftOrInterestContents[i].title == context?.getString(R.string.not_suggested_str)) {
-                this.giftOrInterestContents.removeAt(i)
+        for (i in contents.indices) {
+            if (contents[i].title == context?.getString(R.string.not_suggested_str)) {
+                this.contents.removeAt(i)
                 notifyItemRemoved(i)
-                this.giftOrInterestContents.add(
-                    giftOrInterestContents.lastIndex + 1,
-                    GiftOrInterestContent(
+                this.contents.add(
+                    contents.lastIndex + 1,
+                    Content(
                         context?.getString(R.string.not_suggested_str)!!,
                         false,
+                        ContentType.INTEREST,
                         R.drawable.ic_interest,
-                        ContentType.NEUTRAL
                     )
                 )
             }

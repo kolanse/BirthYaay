@@ -1,22 +1,23 @@
 package com.example.birthyaay.util
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.ContentValues
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
-import android.content.res.Resources
+import android.graphics.Bitmap
+import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
-import android.text.SpannableStringBuilder
+import android.provider.MediaStore
 import android.util.Log
 import android.view.*
 import android.widget.PopupWindow
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContract
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -29,16 +30,18 @@ import androidx.viewbinding.ViewBinding
 import com.example.birthyaay.R
 import com.example.birthyaay.adapters.GiftsOrInterestsAdapter
 import com.example.birthyaay.databinding.FragmentAddCelebrantBinding
+import com.example.birthyaay.databinding.FragmentCelebrantDetailsBinding
 import com.example.birthyaay.databinding.FragmentHomeBinding
 import com.example.birthyaay.databinding.FragmentPeopleBinding
-import com.example.birthyaay.models.GiftOrInterestContent
+import com.example.navigation.navigation.model.Content
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-
+import java.io.OutputStream
+import com.example.navigation.navigation.model.ContentType
 
 
 fun Fragment.showSnackWithMessage(message: String, duration: Int) {
@@ -49,7 +52,17 @@ fun TextInputEditText.addTextColor(context: Context, color: Int) {
     setTextColor(ContextCompat.getColor(context, color))
 }
 
-fun TextInputEditText.setCompoundDrawableWithSpecificBounds(left: Int = 0, top: Int = 0, right: Int = 0, bottom: Int = 0){
+fun Fragment.hideBottomNavigationView() {
+    requireActivity().findViewById<BottomNavigationView>(R.id.activity_main_bottom_navigation_view)
+        .isVisible = false
+}
+
+fun TextView.setCompoundDrawableWithSpecificBounds(
+    left: Int = 0,
+    top: Int = 0,
+    right: Int = 0,
+    bottom: Int = 0
+) {
     setCompoundDrawablesWithIntrinsicBounds(
         left,
         top,
@@ -58,25 +71,23 @@ fun TextInputEditText.setCompoundDrawableWithSpecificBounds(left: Int = 0, top: 
     )
 }
 
-@SuppressLint("ClickableViewAccessibility")
-fun Fragment.pickAndSetDate(editText: TextInputEditText) {
+fun Fragment.pickAndSetDate(textView: TextView) {
     val builder: MaterialDatePicker.Builder<*> = MaterialDatePicker.Builder.datePicker()
     builder.setTitleText(getString(R.string.select_a_date))
 
     val picker: MaterialDatePicker<*> = builder.build()
 
-    editText.setOnTouchListener { _, _ ->
+    textView.setOnClickListener {
+
         try {
             picker.show(parentFragmentManager, picker.toString())
         } catch (e: Exception) {
             Log.i("VIEW_TAG", e.message.toString())
         }
-
-        true
     }
 
     picker.addOnPositiveButtonClickListener {
-        editText.setText(picker.headerText)
+        textView.text = picker.headerText
     }
 }
 
@@ -109,20 +120,28 @@ fun Fragment.isShowOrHideView(isShow: Boolean, binding: ViewBinding) {
                 fragmentAddCelebrantToolbarIv.isVisible = !isShow
             }
         }
+        is FragmentCelebrantDetailsBinding -> {
+            binding.apply {
+                fragmentCelebrantDetailsIv.isVisible = isShow
+                fragmentCelebrantDetailsTitleTv.isVisible = isShow
+                //fragmentAddCelebrantToolbar.isVisible = !isShow
+                fragmentCelebrantDetailsToolbarIv.isVisible = !isShow
+            }
+        }
     }
 }
 
 fun Fragment.customNavAnimation(): NavOptions.Builder {
     val navBuilder: NavOptions.Builder = NavOptions.Builder()
-    navBuilder.setEnterAnim(R.anim.fade_in).setExitAnim(R.anim.fade_out)
-        .setPopEnterAnim(R.anim.fade_in).setPopExitAnim(R.anim.fade_out)
+    navBuilder.setEnterAnim(R.anim.slide_in_right).setExitAnim(R.anim.slide_out_left)
+        .setPopEnterAnim(R.anim.slide_in_right).setPopExitAnim(R.anim.slide_out_left)
     return navBuilder
 }
 
 fun Activity.customNavAnimation(): NavOptions.Builder {
     val navBuilder: NavOptions.Builder = NavOptions.Builder()
-    navBuilder.setEnterAnim(R.anim.fade_in).setExitAnim(R.anim.fade_out)
-        .setPopEnterAnim(R.anim.fade_in).setPopExitAnim(R.anim.fade_out)
+    navBuilder.setEnterAnim(R.anim.slide_in_right).setExitAnim(R.anim.slide_out_left)
+        .setPopEnterAnim(R.anim.slide_in_right).setPopExitAnim(R.anim.slide_out_left)
     return navBuilder
 }
 
@@ -135,8 +154,9 @@ fun BottomNavigationView.checkMenuItem(destinationId: Int) {
 }
 
 
-fun Fragment.checkForPermission(name: String, requestCode: Int,
-                                getContent: ActivityResultLauncher<String>
+fun Fragment.checkForPermission(
+    name: String, requestCode: Int,
+    getContent: ActivityResultLauncher<String>
 ) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
         when {
@@ -148,7 +168,11 @@ fun Fragment.checkForPermission(name: String, requestCode: Int,
                 getContent.launch("image/*")
             }
             shouldShowRequestPermissionRationale(Manifest.permission.READ_EXTERNAL_STORAGE) ->
-                showRequestPermissionRationaleDialog(Manifest.permission.READ_EXTERNAL_STORAGE, name, requestCode)
+                showRequestPermissionRationaleDialog(
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    name,
+                    requestCode
+                )
             else -> ActivityCompat.requestPermissions(
                 requireActivity(),
                 arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
@@ -158,8 +182,81 @@ fun Fragment.checkForPermission(name: String, requestCode: Int,
     }
 }
 
+
+
+fun Fragment.checkForPermission(
+    name: String, requestCode: Int,
+    action: () -> Unit
+) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        when {
+            ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            ) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) == PackageManager.PERMISSION_GRANTED -> {
+                action.invoke()
+            }
+            shouldShowRequestPermissionRationale(Manifest.permission.READ_EXTERNAL_STORAGE) ->
+                showRequestPermissionRationaleDialog(
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    name,
+                    requestCode
+                )
+            else -> ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                requestCode
+            )
+        }
+    }
+}
+
+
+
+
+fun Fragment.checkForMessagePermission(
+    name: String, requestCode: Int,
+    phoneNum: String, message: String
+) {
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        when {
+            ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.SEND_SMS
+            ) == PackageManager.PERMISSION_GRANTED -> {
+                sendMessage(phoneNum, message)
+            }
+
+            shouldShowRequestPermissionRationale(Manifest.permission.READ_EXTERNAL_STORAGE) ->
+                showRequestPermissionRationaleDialog(
+                    Manifest.permission.SEND_SMS,
+                    name,
+                    requestCode
+                )
+
+            else -> ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(Manifest.permission.SEND_SMS),
+                requestCode
+            )
+        }
+
+    }
+}
+
+
+
 // Show dialog for permission dialog
-fun Fragment.showRequestPermissionRationaleDialog(permission: String, name: String, requestCode: Int) {
+fun Fragment.showRequestPermissionRationaleDialog(
+    permission: String,
+    name: String,
+    requestCode: Int
+) {
     // Alert dialog box
     val builder = AlertDialog.Builder(requireContext())
     builder.apply {
@@ -185,9 +282,8 @@ fun Fragment.showRequestPermissionRationaleDialog(permission: String, name: Stri
 
 
 fun Fragment.showPopUpWindow(
-    textInputLayout: TextInputLayout,
-    editText: TextInputEditText,
-    contents: MutableList<GiftOrInterestContent>,
+    textView: TextView,
+    contents: MutableList<Content>,
     contentList: MutableList<String>,
     contentNotSuggestedList: MutableList<String>,
     addedSuggestedContentList: MutableList<String>,
@@ -236,8 +332,25 @@ fun Fragment.showPopUpWindow(
 
             val interests = Converters.toString(contentList)
 
-            textInputLayout.editText?.text =
-                SpannableStringBuilder(interests)
+            textView.text = interests
+
+            when (contentType) {
+                ContentType.INTEREST -> {
+                    textView.text = if (interests.trim().isNotEmpty()) {
+                        interests
+                    } else {
+                        getString(R.string.label_interests_str)
+                    }
+                }
+                else -> {
+                    textView.text = if (interests.trim().isNotEmpty()) {
+                        interests
+                    } else {
+                        getString(R.string.label_choose_gift_categories_str)
+                    }
+                }
+            }
+
 
             if (content.title == getString(
                     R.string.not_suggested_str
@@ -273,18 +386,18 @@ fun Fragment.showPopUpWindow(
         ) {
 
             val content = if (contentType == ContentType.INTEREST) {
-                GiftOrInterestContent(
+                Content(
                     suggestedContent,
                     false,
-                    R.drawable.ic_interest,
-                    ContentType.INTEREST
+                    ContentType.INTEREST,
+                    R.drawable.ic_interest
                 )
             } else {
-                GiftOrInterestContent(
+                Content(
                     suggestedContent,
                     false,
+                    ContentType.GIFT,
                     R.drawable.ic_gift_boxes,
-                    ContentType.GIFT
                 )
             }
 
@@ -327,11 +440,60 @@ fun Fragment.showPopUpWindow(
     }
 
 
-    val width = editText.width
+    val width = textView.width
 
     return PopupWindow(
         view,
         width,
         ViewGroup.LayoutParams.WRAP_CONTENT
     )
+}
+
+fun Fragment.makeCall(phoneNum: String) {
+    Intent(Intent.ACTION_DIAL).apply {
+        this.data = Uri.parse("tel:$phoneNum")
+        startActivity(this)
+    }
+}
+
+fun Fragment.sendMessage(phoneNum: String, message: String) {
+    Intent(Intent.ACTION_VIEW).apply {
+        this.data = Uri.parse("sms:")
+        putExtra("address", phoneNum)
+        putExtra("sms_body", message)
+        startActivity(this)
+    }
+}
+
+fun Fragment.shareImage(imageUri: Uri){
+
+    val bitmap = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+        ImageDecoder.decodeBitmap(ImageDecoder.createSource(requireContext().contentResolver, imageUri))
+    } else {
+        MediaStore.Images.Media.getBitmap(requireContext().contentResolver, imageUri)
+    }
+
+    val values = ContentValues()
+    values.put(MediaStore.Images.Media.TITLE, "title")
+    values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
+
+    val share = Intent(Intent.ACTION_SEND)
+    share.type = "image/jpeg"
+
+    val uri = requireActivity().contentResolver
+        .insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)!!
+
+    var outputStream: OutputStream? = null
+
+    try {
+        outputStream = requireActivity().contentResolver.openOutputStream(uri)
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+        outputStream?.close()
+    } catch (e: Exception) {
+        Log.d("IMAGE_EXCEPTION", e.toString())
+    }
+
+    share.putExtra(Intent.EXTRA_STREAM, uri)
+    startActivity(Intent.createChooser(share, "Share Image"))
+
 }

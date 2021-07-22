@@ -9,22 +9,23 @@ import com.example.birthyaay.R
 import com.example.birthyaay.databinding.CelebrantBirthdayItemBinding
 import com.example.birthyaay.models.UpComingCelebrant
 import com.example.birthyaay.util.ColorSelector
+import com.example.navigation.navigation.model.Celebrant
 
 class UpComingCelebrantViewHolder(
     private val binding: CelebrantBirthdayItemBinding,
-    private val onItemClick: (Int, UpComingCelebrant) -> Unit
+    private val onItemClick: (Int, Celebrant) -> Unit
 ): RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(upComingCelebrant: UpComingCelebrant) {
+    fun bind(upComingCelebrant: Celebrant) {
         binding.apply {
-            celebrantImageIv.load(upComingCelebrant.celebrantImage){
+            celebrantImageIv.load(upComingCelebrant.image?.first()){
                 placeholder(R.drawable.birthday_user_avatar)
             }
-            celebrantNameTv.text = upComingCelebrant.celebrantName
-            celebrantDateTv.text = upComingCelebrant.celebrantDateOfBirth
+            celebrantNameTv.text = upComingCelebrant.name
+            celebrantDateTv.text = upComingCelebrant.dateOfBirth
             celebrantRemainingDayTv.text = upComingCelebrant.daysLeftToBirthday
 
-            val nameFirstCharacter = upComingCelebrant.celebrantName?.first()
+            val nameFirstCharacter = upComingCelebrant.name?.first()
             celebrantInfoPipeCv.backgroundTintList =
                 nameFirstCharacter?.let { ColorSelector.selectColorByCharacter(it) }?.let {
                     ColorStateList.valueOf(

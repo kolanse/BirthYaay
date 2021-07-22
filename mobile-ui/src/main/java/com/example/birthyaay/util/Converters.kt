@@ -5,4 +5,8 @@ object Converters {
 
         return stringList.joinToString(", ")
     }
+    fun fromString(string: String): List<String>{
+
+        return string.split(",").map { it }
+    }
 }

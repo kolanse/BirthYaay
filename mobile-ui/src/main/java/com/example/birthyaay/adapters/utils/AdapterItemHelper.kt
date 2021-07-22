@@ -1,27 +1,29 @@
 package com.example.birthyaay.adapters.utils
 
-import com.example.birthyaay.models.UpComingCelebrant
 import com.example.birthyaay.util.DataResourceGenerator
+import com.example.navigation.navigation.model.Celebrant
 
 object AdapterItemHelper {
     const val VIEW_TYPE_GROUP = 0
     const val VIEW_TYPE_PERSON = 1
+    const val VIEW_TYPE_ADD_INTEREST = 0
+    const val VIEW_TYPE_DETAILS_INTEREST = 1
 
-    fun sortList(upComingCelebrants: MutableList<UpComingCelebrant>): MutableList<UpComingCelebrant> {
+    fun sortList(upComingCelebrants: MutableList<Celebrant>): MutableList<Celebrant> {
         upComingCelebrants.sortWith { upComingCelebrantOne, upComingCelebrantTwo ->
-            upComingCelebrantOne!!.celebrantName!!.compareTo(upComingCelebrantTwo!!.celebrantName!!)
+            upComingCelebrantOne!!.name!!.compareTo(upComingCelebrantTwo!!.name!!)
         }
         return upComingCelebrants
     }
 
-    fun generateAlphabets(upComingCelebrants: MutableList<UpComingCelebrant>): MutableList<UpComingCelebrant> {
+    fun generateAlphabets(upComingCelebrants: MutableList<Celebrant>): MutableList<Celebrant> {
 
         var index = 0
-        val generatedAlphabetsList = mutableListOf<UpComingCelebrant>()
-        val firstCelebrant = UpComingCelebrant()
+        val generatedAlphabetsList = mutableListOf<Celebrant>()
+        val firstCelebrant = Celebrant()
 
         /** Get first character */
-        firstCelebrant.celebrantName = upComingCelebrants.first().celebrantName?.first().toString()
+        firstCelebrant.name = upComingCelebrants.first().name?.first().toString()
 
         /** set view type is header */
         firstCelebrant.viewType = VIEW_TYPE_GROUP
@@ -30,9 +32,9 @@ object AdapterItemHelper {
 
         while (index < upComingCelebrants.lastIndex) {
 
-            val celebrant = UpComingCelebrant()
-            val currentCelebrantFirstChar = upComingCelebrants[index].celebrantName?.first()
-            val nextCelebrantFirstChar = upComingCelebrants[index + 1].celebrantName?.first()
+            val celebrant = Celebrant()
+            val currentCelebrantFirstChar = upComingCelebrants[index].name?.first()
+            val nextCelebrantFirstChar = upComingCelebrants[index + 1].name?.first()
 
             if (currentCelebrantFirstChar == nextCelebrantFirstChar) {
                 upComingCelebrants[index].viewType = VIEW_TYPE_PERSON
@@ -41,7 +43,7 @@ object AdapterItemHelper {
                 upComingCelebrants[index].viewType = VIEW_TYPE_PERSON
                 generatedAlphabetsList.add(upComingCelebrants[index])
 
-                celebrant.celebrantName = nextCelebrantFirstChar.toString()
+                celebrant.name = nextCelebrantFirstChar.toString()
                 celebrant.viewType = VIEW_TYPE_GROUP
                 generatedAlphabetsList.add(celebrant)
             }
@@ -53,6 +55,8 @@ object AdapterItemHelper {
         return generatedAlphabetsList
     }
 
-    val upComingCelebrantsWithSortedGroupAlphabets = generateAlphabets(sortList(DataResourceGenerator.upcomingCelebrants()))
+    val upcomingCelebrants = DataResourceGenerator.celebrants()
+
+    val upComingCelebrantsWithSortedGroupAlphabets = generateAlphabets(sortList(upcomingCelebrants))
 
 }

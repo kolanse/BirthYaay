@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.ExtraInfoFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/interest_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/label_interests_str"
+            android:textSize="@dimen/text_size_16"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/add_interest_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/size_16"
+            android:paddingTop="@dimen/size_16"
+            android:paddingBottom="@dimen/size_16"
+            android:src="@drawable/ic_maximize"
+            app:layout_constraintBottom_toBottomOf="@id/interest_title_tv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/interest_title_tv" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/interest_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/interest_title_tv"
+            tools:itemCount="3"
+            tools:listitem="@layout/interest_item" />
+
+        <TextView
+            android:id="@+id/gift_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_24"
+            android:text="Gifts:"
+            android:textSize="@dimen/text_size_16"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/interest_rv" />
+
+        <ImageView
+            android:id="@+id/add_gift_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/size_16"
+            android:paddingTop="@dimen/size_16"
+            android:paddingBottom="@dimen/size_16"
+            android:src="@drawable/ic_maximize"
+            app:layout_constraintBottom_toBottomOf="@id/gift_title_tv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/gift_title_tv" />
+
+        <com.example.birthyaay.custom_views.textviews.shimmer.NestedScrollableHost
+            android:id="@+id/nestedScrollableHost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/gift_title_tv">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/gift_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                tools:itemCount="3"
+                tools:listitem="@layout/interest_item" />
+
+        </com.example.birthyaay.custom_views.textviews.shimmer.NestedScrollableHost>
+
+
+        <TextView
+            android:id="@+id/pictures_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_24"
+            android:text="@string/pictures_str"
+            android:textSize="@dimen/text_size_16"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/nestedScrollableHost" />
+
+        <ImageView
+            android:id="@+id/add_picture_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/size_16"
+            android:paddingTop="@dimen/size_16"
+            android:paddingBottom="@dimen/size_16"
+            android:src="@drawable/ic_maximize"
+            app:layout_constraintBottom_toBottomOf="@id/pictures_title_tv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/pictures_title_tv" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/picture_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pictures_title_tv"
+            tools:itemCount="3"
+            tools:listitem="@layout/interest_item" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

@@ -6,6 +6,8 @@ plugins {
     id(PluginDepedencies.kotlin_kapt)
     id(PluginDepedencies.dagger_hilt)
     id("kotlin-android")
+    id ("androidx.navigation.safeargs.kotlin")
+    id ( "kotlin-parcelize")
 }
 
  android {

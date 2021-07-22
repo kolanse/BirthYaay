@@ -7,5 +7,6 @@ data class GiftOrInterestContent(
     val title: String,
     val isClicked: Boolean,
     val drawableRes: Int,
-    val contentType: ContentType
+    val contentType: ContentType,
+    val viewType: Int = 0
 )

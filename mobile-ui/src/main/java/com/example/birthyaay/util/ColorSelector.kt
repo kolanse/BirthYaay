@@ -1,9 +1,12 @@
 package com.example.birthyaay.util
 
+import android.graphics.Color
+import android.util.Log
+
 object ColorSelector {
     private fun colors(): List<Int> =
         listOf(
-            -0x1a8c8d,
+            -0xf44336,
             -0xf9d6e,
             -0x459738,
             -0x6a8a33,
@@ -33,6 +36,7 @@ object ColorSelector {
 
     fun selectColorByCharacter(char: Char): Int {
         val colors = colors()
+        Log.d("CHAR", char.toString())
         val charArray = (65..90).map {
             it.toChar()
         }
