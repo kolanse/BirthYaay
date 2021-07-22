@@ -2,35 +2,38 @@ package com.example.birthyaay.shared
 
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import coil.transform.CircleCropTransformation
 import com.example.birthyaay.R
 import com.example.birthyaay.databinding.CurrentCelebrantItemBinding
-import com.example.birthyaay.models.CurrentCelebrant
+import com.example.navigation.navigation.model.Celebrant
 
 
 class CurrentCelebrantViewHolder(
     private val binding: CurrentCelebrantItemBinding,
-    private val onShareClick: (CurrentCelebrant) -> Unit,
-    private val onMessageClick: (CurrentCelebrant) -> Unit,
-    private val onCallClick: (CurrentCelebrant) -> Unit
+    private val onItemClick: (Celebrant) -> Unit,
+    private val onShareClick: (Celebrant) -> Unit,
+    private val onMessageClick: (Celebrant) -> Unit,
+    private val onCallClick: (Celebrant) -> Unit
 ): RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(currentCelebrant: CurrentCelebrant) {
+    fun bind(celebrant: Celebrant) {
         binding.apply {
-            currentCelebrantImageIv.load(currentCelebrant.image){
+            currentCelebrantImageIv.load(celebrant.image?.first()){
                 crossfade(true)
                 placeholder(R.drawable.birthday_user_avatar)
             }
             currentCelebrantNameTv.text =
-                root.context.getString(R.string.celebratory_prompt_with_name, currentCelebrant.name)
+                root.context.getString(R.string.celebratory_prompt_with_name, celebrant.name)
             currentCelebrantShareIv.setOnClickListener {
-                onShareClick(currentCelebrant)
+                onShareClick(celebrant)
             }
             currentCelebrantMessageIv.setOnClickListener {
-                onMessageClick(currentCelebrant)
+                onMessageClick(celebrant)
             }
             currentCelebrantCallIv.setOnClickListener {
-                onCallClick(currentCelebrant)
+                onCallClick(celebrant)
+            }
+            root.setOnClickListener {
+                onItemClick(celebrant)
             }
         }
     }

@@ -12,11 +12,12 @@ object Versions {
     val hilt_version = "2.37"
     val room_version = "2.3.0"
     val nav_version = "2.3.5"
-    val activityKtx = "1.2.2"
+    val activityKtx = "1.2.3"
     val lottieVersion = "3.7.0"
     val amulLibraryVersion = "1.0.1"
     val glideVersion = "4.12.0"
     val coilVersion = "1.2.2"
+    val fragmentKtx = "1.3.5"
 
     //test
     val junit = "4.12"

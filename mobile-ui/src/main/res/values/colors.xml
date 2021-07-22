@@ -14,4 +14,6 @@
     <color name="grey_50">#ACACAC</color>
     <color name="grey_25">#FAFAFA</color>
     <color name="dark_grey">#727272</color>
+    <color name="ghost_white">#fafafa</color>
+    <color name="dark_brown">#2F2F2F</color>
 </resources>

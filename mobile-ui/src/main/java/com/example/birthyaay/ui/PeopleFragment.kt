@@ -4,7 +4,6 @@ package com.example.birthyaay.ui
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.birthyaay.R
@@ -12,6 +11,7 @@ import com.example.birthyaay.adapters.UpComingCelebrantAdapter
 import com.example.birthyaay.adapters.utils.AdapterItemHelper
 import com.example.birthyaay.databinding.FragmentPeopleBinding
 import com.example.birthyaay.util.isShowOrHideView
+import com.example.navigation.navigation.model.Celebrant
 import com.google.android.material.appbar.AppBarLayout
 
 
@@ -37,7 +37,7 @@ class PeopleFragment() : Fragment(R.layout.fragment_people) {
                 }
             }
 
-            fragmentPeopleInc.fragmentPeopleFab.setOnClickListener {
+            fragmentPeopleFab.setOnClickListener {
                 findNavController().navigate(R.id.addCelebrantFragment)
             }
 
@@ -45,11 +45,11 @@ class PeopleFragment() : Fragment(R.layout.fragment_people) {
 
                 adapter = UpComingCelebrantAdapter(
                     onItemClick = { position, upComingCelebrant ->
-                        Toast.makeText(
-                            requireContext(),
-                            upComingCelebrant.celebrantName,
-                            Toast.LENGTH_SHORT
-                        ).show()
+
+                        val actions = PeopleFragmentDirections.
+                        actionPeopleFragmentToCelebrantDetailsFragment(upComingCelebrant)
+
+                        findNavController().navigate(actions)
                     },
                     AdapterItemHelper.upComingCelebrantsWithSortedGroupAlphabets
                 )
@@ -78,12 +78,9 @@ class PeopleFragment() : Fragment(R.layout.fragment_people) {
     }
 
 
-
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
     }
-
-
 
 }

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/add_gift_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_32"
+        android:layout_marginTop="@dimen/size_48"
+        android:text="Add Gift"
+        android:textSize="@dimen/text_size_18"
+        android:textStyle="bold"
+        android:fontFamily="@font/montserrat"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/ic_gift_linear"
+        app:layout_constraintStart_toEndOf="@+id/add_gift_tv"
+        app:layout_constraintTop_toTopOf="@+id/add_gift_tv" />
+
+    <TextView
+        android:id="@+id/add_content_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_32"
+        android:layout_marginTop="@dimen/size_32"
+        android:layout_marginEnd="@dimen/size_32"
+        android:background="@drawable/grey_stroke_bg"
+        android:paddingHorizontal="@dimen/size_16"
+        android:paddingVertical="@dimen/size_18"
+        android:text="@string/label_choose_gift_categories_str"
+        android:textColor="@color/dark_grey"
+        android:textSize="@dimen/text_size_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_gift_tv"
+        app:drawableEndCompat="@drawable/ic_arrow_down" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/submit_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/size_16"
+        android:text="@string/add_gift_str"
+        android:textAllCaps="false"
+        android:layout_marginTop="@dimen/size_32"
+        android:layout_marginStart="@dimen/size_32"
+        android:layout_marginEnd="@dimen/size_32"
+        app:backgroundTint="@color/purple_100"
+        app:cornerRadius="@dimen/size_50"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_content_et" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

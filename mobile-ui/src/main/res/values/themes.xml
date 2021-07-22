@@ -15,6 +15,8 @@
 <!--        <item name="fontFamily">@font/montserrat</item>-->
         
         <item name="materialCalendarTheme">@style/ThemeOverlay.App.DatePicker</item>
+
+        <item name="bottomSheetDialogTheme">@style/BottomSheetDialogSheetTheme</item>
         
     </style>
 
@@ -39,6 +41,23 @@
     <style name="ThemeOverlay.App.DatePicker" parent="@style/ThemeOverlay.MaterialComponents.MaterialCalendar">
         <item name="colorPrimary">@color/purple_100</item>
         <item name="colorOnPrimary">@color/white</item>
+    </style>
+
+
+    <style name="BottomSheetDialogSheetTheme" parent="@style/Theme.MaterialComponents.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheetDialogSheet</item>
+    </style>
+
+    <style name="BottomSheetDialogSheet" parent="Widget.MaterialComponents.BottomSheet">
+        <item name="shapeAppearanceOverlay">@style/BottomSheetDialogBackground</item>
+    </style>
+    
+    <style name="BottomSheetDialogBackground" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">16dp</item>
+        <item name="cornerSizeTopLeft">16dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
     </style>
 
 

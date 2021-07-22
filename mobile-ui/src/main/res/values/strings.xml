@@ -38,4 +38,20 @@
     <string name="okay_str">Ok</string>
     <string name="permission_refused_message">permission refused</string>
     <string name="select_a_date">Select a date</string>
+    <string name="birthday_celebrant">Birthday Celebrant</string>
+    <string name="phone_str">Phone</string>
+    <string name="dummy_phone_no">+234 8136 400 711</string>
+    <string name="dummy_email_str">adewunmivictor@gmail.com</string>
+    <string name="dummy_date_of_birth_str">23 September, 1891</string>
+    <string name="note_str">Note</string>
+    <string name="dummy_note_str">Lorem ipsum dolor sit amet, consectetur adipisc elit, sed do eiusmod tempor incidi dunt ut lae dolore magna aliqua. tempor incididunt ut labore et dolore.</string>
+    <string name="pictures_str">Pictures</string>
+    <string name="empty_phone_or_message">Phone number or message can\'t be empty</string>
+    <string name="no_note_error">Aww! You\'re yet to add a note for celebrant.</string>
+    <string name="no_phone_error">Aww! You\'re yet to add celebrant\'s phone number.</string>
+    <string name="no_image_error">Yikes! There\'s no image to share.</string>
+    <string name="profile_picture_str">Profile Picture</string>
+    <string name="add_interest_str">Add Interest</string>
+    <string name="choose_interest_str">Choose interest categories</string>
+    <string name="image_exists_error">Image already exists.</string>
 </resources>

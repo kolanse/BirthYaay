@@ -1,19 +1,21 @@
 package com.example.birthyaay.ui
 
-import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.text.SpannableStringBuilder
+import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.view.ViewGroup
 import android.widget.PopupWindow
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.birthyaay.R
 import com.example.birthyaay.databinding.FragmentAddCelebrantBinding
 import com.example.birthyaay.util.*
@@ -25,26 +27,44 @@ import com.example.birthyaay.util.DataResourceGenerator.notSuggestedGiftList
 import com.example.birthyaay.util.DataResourceGenerator.notSuggestedList
 import com.example.birthyaay.util.DataResourceGenerator.provideGifts
 import com.example.birthyaay.util.DataResourceGenerator.provideInterests
+import com.example.navigation.navigation.model.Celebrant
+import com.example.navigation.navigation.model.Content
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.snackbar.Snackbar
+import com.example.navigation.navigation.model.ContentType
 
-class AddCelebrantFragment : Fragment(R.layout.fragment_add_celebrant) {
+class AddCelebrantFragment : Fragment() {
     private var _binding: FragmentAddCelebrantBinding? = null
     private val binding get() = _binding!!
     private var interestPopupWindow: PopupWindow? = null
     private var giftPopupWindow: PopupWindow? = null
 
-    val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
-        // Handle the returned Uri
-        if (uri != null) {
-            imageUri = uri
+    private val getContent =
+        registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+            // Handle the returned Uri
+            if (uri != null) {
+                imageUri = uri
+            }
+
         }
+
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+
+        _binding = FragmentAddCelebrantBinding.inflate(inflater)
+
+        hideBottomNavigationView()
+
+        return binding.root
+
     }
 
-    @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentAddCelebrantBinding.bind(view)
 
         binding.apply {
 
@@ -73,17 +93,16 @@ class AddCelebrantFragment : Fragment(R.layout.fragment_add_celebrant) {
 
             })
 
-            fragmentAddCelebrantInc.addCelebrantInterestEt.setOnTouchListener { v, event ->
+            fragmentAddCelebrantInc.addCelebrantInterestEt.setOnClickListener {
 
                 dismissPopup()
                 interestPopupWindow = showPopUpWindow(
-                    textInputLayout = fragmentAddCelebrantInc.addCelebrantInterestTil,
-                    editText = fragmentAddCelebrantInc.addCelebrantInterestEt,
+                    textView = fragmentAddCelebrantInc.addCelebrantInterestEt,
                     contents = provideInterests(),
                     contentList = interestsList,
                     contentNotSuggestedList = notSuggestedList,
                     addedSuggestedContentList = addedSuggestedInterests,
-                    contentType = ContentType.INTEREST
+                    contentType = com.example.navigation.navigation.model.ContentType.INTEREST
                 )
                 interestPopupWindow!!.apply {
                     isOutsideTouchable = true
@@ -92,15 +111,15 @@ class AddCelebrantFragment : Fragment(R.layout.fragment_add_celebrant) {
                     setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     showAsDropDown(fragmentAddCelebrantInc.addCelebrantInterestEt)
                 }
-                true
+
             }
 
-            fragmentAddCelebrantInc.addCelebrantGiftEt.setOnTouchListener { v, event ->
+
+            fragmentAddCelebrantInc.addCelebrantGiftEt.setOnClickListener {
 
                 dismissPopup()
                 giftPopupWindow = showPopUpWindow(
-                    textInputLayout = fragmentAddCelebrantInc.addCelebrantGiftsTil,
-                    editText = fragmentAddCelebrantInc.addCelebrantGiftEt,
+                    textView = fragmentAddCelebrantInc.addCelebrantGiftEt,
                     contents = provideGifts(),
                     contentList = giftsList,
                     contentNotSuggestedList = notSuggestedGiftList,
@@ -115,18 +134,91 @@ class AddCelebrantFragment : Fragment(R.layout.fragment_add_celebrant) {
                     setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     showAsDropDown(fragmentAddCelebrantInc.addCelebrantGiftEt)
                 }
-                true
+
             }
 
-            fragmentAddCelebrantInc.addCelebrantPictureEt.setOnTouchListener { v, event ->
+
+            fragmentAddCelebrantInc.addCelebrantPictureEt.setOnClickListener {
                 checkForPermission(
-                    PERMISSION_NAME, PICK_IMAGE_REQUEST_CODE,
-                    getContent
+                    PERMISSION_NAME, READ_STORAGE_REQUEST_CODE,
+                    action = {
+                        getContent.launch("image/*")
+                    }
                 )
-                true
             }
+
 
             pickAndSetDate(fragmentAddCelebrantInc.addCelebrantDateEt)
+
+            fragmentAddCelebrantInc.submitBtn.setOnClickListener {
+
+                fragmentAddCelebrantInc.apply {
+                    val name = addCelebrantNameEt.editText?.text.toString()
+                    val phoneNumber = addCelebrantPhoneEt.editText?.text.toString()
+                    val email = addCelebrantEmailEt.editText?.text.toString()
+                    val dateOfBirth = if (addCelebrantDateEt.text.toString() != getString(R.string.date_of_birth_str)){
+                        addCelebrantDateEt.text.toString()
+                    } else {
+                        ""
+                    }
+                    val interestsInString = if (addCelebrantInterestEt.text.toString()
+                        != getString(R.string.label_interests_str)
+                    ) {
+                        addCelebrantInterestEt.text.toString()
+                    } else {
+                        ""
+                    }
+                    val interests = if (interestsInString.trim().isNotEmpty()) {
+                        interestsInString
+                            .split(",")
+                            .map {
+                                Content(it, true, ContentType.INTEREST)
+                            }
+                    } else {
+                        emptyList()
+                    }
+
+                    val giftsInString = if (addCelebrantGiftEt.text.toString()
+                        != getString(R.string.label_choose_gift_categories_str)
+                    ) {
+                        addCelebrantGiftEt.text.toString()
+                    } else {
+                        ""
+                    }
+
+                    val gifts = if (giftsInString.trim().isNotEmpty()) {
+                        giftsInString
+                            .split(",")
+                            .map {
+                                Content(it, true, ContentType.GIFT)
+                            }
+                    } else {
+                        emptyList()
+                    }
+
+
+                    val pictureUri = imageUri.toString()
+                    val note = addCelebrantNoteEt.editText?.text.toString()
+
+                    val celebrant = Celebrant(
+                        name = name,
+                        phoneNumber = phoneNumber,
+                        email = email,
+                        dateOfBirth = dateOfBirth,
+                        interests = interests,
+                        gifts = gifts,
+                        image = listOf(pictureUri),
+                        note = note
+                    )
+
+                    val actions =
+                        AddCelebrantFragmentDirections
+                            .actionAddCelebrantFragmentToCelebrantDetailsFragment(celebrant)
+                    findNavController().navigate(actions)
+                }
+
+
+            }
 
         }
     }
@@ -139,8 +231,8 @@ class AddCelebrantFragment : Fragment(R.layout.fragment_add_celebrant) {
             if (imageUri != null) {
                 fragmentAddCelebrantInc.apply {
                     addCelebrantPictureEt.apply {
-                        text = SpannableStringBuilder("  Picture added successfully.")
-                        addTextColor(requireContext(), R.color.black)
+                        text = "  Picture added successfully."
+                        setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
                         setCompoundDrawableWithSpecificBounds(
                             left = R.drawable.ic_check
                         )
@@ -153,8 +245,8 @@ class AddCelebrantFragment : Fragment(R.layout.fragment_add_celebrant) {
             fragmentAddCelebrantInc.apply {
                 addCelebrantRemoveBinIv.setOnClickListener {
                     addCelebrantPictureEt.apply {
-                        text = SpannableStringBuilder(getString(R.string.label_add_celebrant_picture_str))
-                        addTextColor(requireContext(), R.color.dark_grey)
+                        text = getString(R.string.label_add_celebrant_picture_str)
+                        setTextColor(ContextCompat.getColor(requireContext(), R.color.dark_grey))
                         setCompoundDrawableWithSpecificBounds(
                             right = R.drawable.gallery_solid
                         )
@@ -176,7 +268,7 @@ class AddCelebrantFragment : Fragment(R.layout.fragment_add_celebrant) {
         grantResults: IntArray
     ) {
         when (requestCode) {
-            PICK_IMAGE_REQUEST_CODE -> {
+            READ_STORAGE_REQUEST_CODE -> {
                 if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
                     showSnackWithMessage(
                         getString(R.string.permission_refused_message),

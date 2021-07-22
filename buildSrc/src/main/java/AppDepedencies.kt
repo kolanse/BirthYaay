@@ -21,6 +21,7 @@ object AppDependencies {
     val glide = "com.github.bumptech.glide:${Versions.glideVersion}"
     val glideCore = "android.arch.lifecycle:compiler:1.0.0"
     val glideAnnotationProcessor = "com.github.bumptech.glide:compiler:${Versions.glideVersion}"
+    val fragmentKtx = "androidx.fragment:fragment-ktx:${Versions.fragmentKtx}"
 
 
     //test libs
@@ -78,7 +79,7 @@ object AppDependencies {
         add(navigationUi)
         add(lottieAnimation)
         add(amulLibrary)
-        //add(glide)
+        add(fragmentKtx)
     }
 
     val androidTestLibraries = arrayListOf<String>().apply {

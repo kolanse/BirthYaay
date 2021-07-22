@@ -42,7 +42,7 @@ class MainActivity() : AppCompatActivity(), Navigator {
             binding.activityMainBottomNavigationView.isVisible = true
             if (destination.id == R.id.homeFragment) {
                 binding.activityMainBottomNavigationView.checkMenuItem(R.id.homeFragment)
-            } else if (destination.id == R.id.addCelebrantFragment) {
+            } else if (destination.id == R.id.celebrantDetailsFragment) {
                 binding.activityMainBottomNavigationView.isVisible = false
             }
         }
