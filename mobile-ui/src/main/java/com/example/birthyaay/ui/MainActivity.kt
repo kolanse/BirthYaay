@@ -61,8 +61,8 @@ class MainActivity() : AppCompatActivity(), Navigator {
                 R.id.peopleFragment -> {
                     R.id.peopleFragment
                 }
-                R.id.giftsFragment -> {
-                    R.id.giftsFragment
+                R.id.exploreGiftFragment -> {
+                    R.id.exploreGiftFragment
                 }
                 R.id.homeFragment -> {
                     R.id.homeFragment
@@ -87,8 +87,8 @@ class MainActivity() : AppCompatActivity(), Navigator {
 
             if (currentDestination == R.id.peopleFragment) {
                 activityMainBottomNavigationView.checkMenuItem(R.id.peopleFragment)
-            } else if (currentDestination == R.id.giftsFragment) {
-                activityMainBottomNavigationView.checkMenuItem(R.id.giftsFragment)
+            } else if (currentDestination == R.id.exploreGiftFragment) {
+                activityMainBottomNavigationView.checkMenuItem(R.id.exploreGiftFragment)
             }
         }
     }
@@ -99,8 +99,9 @@ class MainActivity() : AppCompatActivity(), Navigator {
         if (currentDestination == R.id.homeFragment) {
             finish()
         } else {
-            navigateTo(R.id.homeFragment)
-            binding.activityMainBottomNavigationView.isVisible = true
+//            navigateTo(R.id.homeFragment)
+//            binding.activityMainBottomNavigationView.isVisible = true
+            navController.popBackStack()
         }
 
          selectActiveIcon()

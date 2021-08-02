@@ -12,8 +12,12 @@
     <color name="purple_50">#EEE7F7</color>
     <color name="purple_dark">#560BAD</color>
     <color name="grey_50">#ACACAC</color>
+    <color name="grey_70">#C4C4C4</color>
     <color name="grey_25">#FAFAFA</color>
     <color name="dark_grey">#727272</color>
     <color name="ghost_white">#fafafa</color>
     <color name="dark_brown">#2F2F2F</color>
+    <color name="dark_red">#BB0404</color>
+    <color name="brown_100">#763723</color>
+    <color name="hue_black">#2C2D2F</color>
 </resources>

@@ -67,6 +67,7 @@ dependencies {
     implementation(project(AppDependencies.navigation))
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation("io.coil-kt:coil:${Versions.coilVersion}")
+    implementation("com.android.support:palette-v7:${Versions.paletteVersion}")
 
     //test libs
     testImplementation(AppDependencies.testLibraries)

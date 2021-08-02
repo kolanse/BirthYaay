@@ -7,7 +7,7 @@ import com.example.birthyaay.databinding.GiftItemBinding
 import com.example.birthyaay.models.Gift
 import com.example.birthyaay.util.ColorSelector
 
-class GiftsViewHolder(private val binding: GiftItemBinding): RecyclerView.ViewHolder(binding.root) {
+class GiftsViewHolder(private val binding: GiftItemBinding, private val onLongClick: (Gift) -> Unit ): RecyclerView.ViewHolder(binding.root) {
 
     fun bind(gift: Gift) {
         binding.apply {
@@ -16,6 +16,10 @@ class GiftsViewHolder(private val binding: GiftItemBinding): RecyclerView.ViewHo
                 val firstCharacter = gift.title.first()
                 val drawable: GradientDrawable = root.background as GradientDrawable
                 drawable.setStroke(2, ColorSelector.selectColorByCharacter(firstCharacter))
+            }
+            root.setOnLongClickListener {
+                onLongClick.invoke(gift)
+                true
             }
         }
     }

@@ -10,7 +10,7 @@ import com.example.birthyaay.databinding.PictureItemBinding
 import com.example.birthyaay.shared.PicturesViewHolder
 import com.example.birthyaay.util.DataResourceGenerator
 
-class PicturesAdapter(private val onItemClick: (String) -> Unit) :
+class PicturesAdapter(private val onLongClick: (String) -> Unit) :
     RecyclerView.Adapter<PicturesViewHolder>() {
 
     private val pictures =
@@ -22,18 +22,13 @@ class PicturesAdapter(private val onItemClick: (String) -> Unit) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PicturesViewHolder {
         binding = PictureItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return PicturesViewHolder(binding!!,
-            onItemClick = { picture ->
-                onItemClick(picture)
+            onLongClick = { picture ->
+                onLongClick(picture)
             }
         )
     }
 
     override fun onBindViewHolder(holder: PicturesViewHolder, position: Int) {
-        pictures.forEach {
-            Log.d("PIC", it)
-            println("PIC $it")
-        }
-        Log.d("PIC", pictures.size.toString())
         holder.bind(pictures[position])
     }
 

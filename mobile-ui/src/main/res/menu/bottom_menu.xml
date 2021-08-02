@@ -13,7 +13,7 @@
         android:icon="@drawable/avatar"
         />
     <item
-        android:id="@+id/giftsFragment"
+        android:id="@+id/exploreGiftFragment"
         android:title="@string/bottom_menu_gift_str"
         android:icon="@drawable/gift"
         />

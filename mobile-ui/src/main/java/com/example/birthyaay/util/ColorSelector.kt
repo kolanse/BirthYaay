@@ -36,7 +36,6 @@ object ColorSelector {
 
     fun selectColorByCharacter(char: Char): Int {
         val colors = colors()
-        Log.d("CHAR", char.toString())
         val charArray = (65..90).map {
             it.toChar()
         }

@@ -54,4 +54,15 @@
     <string name="add_interest_str">Add Interest</string>
     <string name="choose_interest_str">Choose interest categories</string>
     <string name="image_exists_error">Image already exists.</string>
+    <string name="remove_message_str">You are about to remove \n %s.</string>
+    <string name="remove_interest_str">Remove Interest</string>
+    <string name="remove_gift_str">Remove Gift</string>
+    <string name="remove_picture">Remove Picture</string>
+    <string name="a_gift">a gift</string>
+    <string name="a_picture">a picture</string>
+    <string name="view_str">View</string>
+    <string name="share_str">Share</string>
+    <string name="delete_str">Delete</string>
+    <string name="explore_gifts_str">Explore Gifts</string>
+    <string name="gift_a_celebrant_str">Gift a celebrant</string>
 </resources>

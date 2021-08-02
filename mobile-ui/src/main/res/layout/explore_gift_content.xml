@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_explore_gifts_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/size_24"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/explore_gifts_str"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_20"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/fragment_explore_gifts_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/size_8"
+                android:src="@drawable/gifts_group" />
+        </LinearLayout>
+
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/explore_gift_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/explore_gift_item" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/explore_tb"
+            android:layout_width="match_parent"
+            android:elevation="0dp"
+            android:layout_height="8dp"
+            android:layout_gravity="center_horizontal"
+            app:tabGravity="center"
+            app:tabBackground="@drawable/tab_layout_indicator_bg"
+            app:tabIndicatorGravity="center"
+            app:tabIndicatorHeight="0dp"
+            />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

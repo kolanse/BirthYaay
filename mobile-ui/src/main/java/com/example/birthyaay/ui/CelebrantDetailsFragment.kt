@@ -60,9 +60,10 @@ class CelebrantDetailsFragment : Fragment(R.layout.fragment_celebrant_details) {
             fragmentCelebrantDetailsToolbar.apply {
                 setNavigationIcon(R.drawable.ic_arrow_back)
                 setNavigationOnClickListener {
-                    findNavController().navigate(
-                        R.id.peopleFragment
-                    )
+                    findNavController().popBackStack()
+//                    findNavController().navigate(
+//                        R.id.peopleFragment
+//                    )
                 }
             }
 

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/size_32"
+    android:paddingVertical="@dimen/size_32">
+
+    <TextView
+        android:id="@+id/view_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/size_16"
+        android:fontFamily="@font/montserrat"
+        android:paddingBottom="@dimen/size_16"
+        android:text="@string/view_str"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/share_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat"
+        android:paddingTop="@dimen/size_16"
+        android:paddingBottom="@dimen/size_16"
+        android:text="@string/share_str"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/delete_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/delete_str"
+        android:paddingTop="@dimen/size_16"
+        android:textColor="@color/dark_red"
+        />
+
+</LinearLayout>

@@ -1,6 +1,7 @@
 package com.example.birthyaay.util
 
 import com.example.birthyaay.R
+import com.example.birthyaay.models.ExploreGift
 import com.example.navigation.navigation.model.Celebrant
 import com.example.navigation.navigation.model.Content
 import com.example.navigation.navigation.model.ContentType
@@ -36,8 +37,8 @@ object DataResourceGenerator {
                     Content("Games", false, ContentType.INTEREST, R.drawable.ic_interest),
                     Content("Music", false, ContentType.INTEREST, R.drawable.ic_interest),
                     Content("Photography", false, ContentType.INTEREST, R.drawable.ic_interest),
-                    Content("Books", false,ContentType.INTEREST,  R.drawable.ic_interest),
-                    Content("Arts", false, ContentType.INTEREST, R.drawable.ic_interest,),
+                    Content("Books", false, ContentType.INTEREST, R.drawable.ic_interest),
+                    Content("Arts", false, ContentType.INTEREST, R.drawable.ic_interest),
                     Content(
                         "Not Suggested? Add yours...",
                         false,
@@ -46,8 +47,8 @@ object DataResourceGenerator {
                     )
                 ),
                 gifts = listOf(
-                    Content("Cake", false, ContentType.GIFT, R.drawable.ic_gift_boxes,),
-                    Content("Shoes", false, ContentType.GIFT, R.drawable.ic_gift_boxes,),
+                    Content("Cake", false, ContentType.GIFT, R.drawable.ic_gift_boxes),
+                    Content("Shoes", false, ContentType.GIFT, R.drawable.ic_gift_boxes),
                     Content("Headsets", false, ContentType.GIFT, R.drawable.ic_gift_boxes),
                     Content("Mobile Phone", false, ContentType.GIFT, R.drawable.ic_gift_boxes),
                     Content("Books", false, ContentType.GIFT, R.drawable.ic_gift_boxes),
@@ -72,8 +73,8 @@ object DataResourceGenerator {
                     Content("Games", false, ContentType.INTEREST, R.drawable.ic_interest),
                     Content("Music", false, ContentType.INTEREST, R.drawable.ic_interest),
                     Content("Photography", false, ContentType.INTEREST, R.drawable.ic_interest),
-                    Content("Books", false,ContentType.INTEREST,  R.drawable.ic_interest),
-                    Content("Arts", false, ContentType.INTEREST, R.drawable.ic_interest,),
+                    Content("Books", false, ContentType.INTEREST, R.drawable.ic_interest),
+                    Content("Arts", false, ContentType.INTEREST, R.drawable.ic_interest),
                     Content(
                         "Not Suggested? Add yours...",
                         false,
@@ -82,8 +83,8 @@ object DataResourceGenerator {
                     )
                 ),
                 gifts = listOf(
-                    Content("Cake", false, ContentType.GIFT, R.drawable.ic_gift_boxes,),
-                    Content("Shoes", false, ContentType.GIFT, R.drawable.ic_gift_boxes,),
+                    Content("Cake", false, ContentType.GIFT, R.drawable.ic_gift_boxes),
+                    Content("Shoes", false, ContentType.GIFT, R.drawable.ic_gift_boxes),
                     Content("Headsets", false, ContentType.GIFT, R.drawable.ic_gift_boxes),
                     Content("Mobile Phone", false, ContentType.GIFT, R.drawable.ic_gift_boxes),
                     Content("Books", false, ContentType.GIFT, R.drawable.ic_gift_boxes),
@@ -108,8 +109,8 @@ object DataResourceGenerator {
                     Content("Games", false, ContentType.INTEREST, R.drawable.ic_interest),
                     Content("Music", false, ContentType.INTEREST, R.drawable.ic_interest),
                     Content("Photography", false, ContentType.INTEREST, R.drawable.ic_interest),
-                    Content("Books", false,ContentType.INTEREST,  R.drawable.ic_interest),
-                    Content("Arts", false, ContentType.INTEREST, R.drawable.ic_interest,),
+                    Content("Books", false, ContentType.INTEREST, R.drawable.ic_interest),
+                    Content("Arts", false, ContentType.INTEREST, R.drawable.ic_interest),
                     Content(
                         "Not Suggested? Add yours...",
                         false,
@@ -118,8 +119,8 @@ object DataResourceGenerator {
                     )
                 ),
                 gifts = listOf(
-                    Content("Cake", false, ContentType.GIFT, R.drawable.ic_gift_boxes,),
-                    Content("Shoes", false, ContentType.GIFT, R.drawable.ic_gift_boxes,),
+                    Content("Cake", false, ContentType.GIFT, R.drawable.ic_gift_boxes),
+                    Content("Shoes", false, ContentType.GIFT, R.drawable.ic_gift_boxes),
                     Content("Headsets", false, ContentType.GIFT, R.drawable.ic_gift_boxes),
                     Content("Mobile Phone", false, ContentType.GIFT, R.drawable.ic_gift_boxes),
                     Content("Books", false, ContentType.GIFT, R.drawable.ic_gift_boxes),
@@ -144,8 +145,8 @@ object DataResourceGenerator {
                     Content("Games", false, ContentType.INTEREST, R.drawable.ic_interest),
                     Content("Music", false, ContentType.INTEREST, R.drawable.ic_interest),
                     Content("Photography", false, ContentType.INTEREST, R.drawable.ic_interest),
-                    Content("Books", false,ContentType.INTEREST,  R.drawable.ic_interest),
-                    Content("Arts", false, ContentType.INTEREST, R.drawable.ic_interest,),
+                    Content("Books", false, ContentType.INTEREST, R.drawable.ic_interest),
+                    Content("Arts", false, ContentType.INTEREST, R.drawable.ic_interest),
                     Content(
                         "Not Suggested? Add yours...",
                         false,
@@ -154,8 +155,8 @@ object DataResourceGenerator {
                     )
                 ),
                 gifts = listOf(
-                    Content("Cake", false, ContentType.GIFT, R.drawable.ic_gift_boxes,),
-                    Content("Shoes", false, ContentType.GIFT, R.drawable.ic_gift_boxes,),
+                    Content("Cake", false, ContentType.GIFT, R.drawable.ic_gift_boxes),
+                    Content("Shoes", false, ContentType.GIFT, R.drawable.ic_gift_boxes),
                     Content("Headsets", false, ContentType.GIFT, R.drawable.ic_gift_boxes),
                     Content("Mobile Phone", false, ContentType.GIFT, R.drawable.ic_gift_boxes),
                     Content("Books", false, ContentType.GIFT, R.drawable.ic_gift_boxes),
@@ -180,8 +181,8 @@ object DataResourceGenerator {
                     Content("Games", false, ContentType.INTEREST, R.drawable.ic_interest),
                     Content("Music", false, ContentType.INTEREST, R.drawable.ic_interest),
                     Content("Photography", false, ContentType.INTEREST, R.drawable.ic_interest),
-                    Content("Books", false,ContentType.INTEREST,  R.drawable.ic_interest),
-                    Content("Arts", false, ContentType.INTEREST, R.drawable.ic_interest,),
+                    Content("Books", false, ContentType.INTEREST, R.drawable.ic_interest),
+                    Content("Arts", false, ContentType.INTEREST, R.drawable.ic_interest),
                     Content(
                         "Not Suggested? Add yours...",
                         false,
@@ -190,8 +191,8 @@ object DataResourceGenerator {
                     )
                 ),
                 gifts = listOf(
-                    Content("Cake", false, ContentType.GIFT, R.drawable.ic_gift_boxes,),
-                    Content("Shoes", false, ContentType.GIFT, R.drawable.ic_gift_boxes,),
+                    Content("Cake", false, ContentType.GIFT, R.drawable.ic_gift_boxes),
+                    Content("Shoes", false, ContentType.GIFT, R.drawable.ic_gift_boxes),
                     Content("Headsets", false, ContentType.GIFT, R.drawable.ic_gift_boxes),
                     Content("Mobile Phone", false, ContentType.GIFT, R.drawable.ic_gift_boxes),
                     Content("Books", false, ContentType.GIFT, R.drawable.ic_gift_boxes),
@@ -213,8 +214,8 @@ object DataResourceGenerator {
             Content("Games", false, ContentType.INTEREST, R.drawable.ic_interest),
             Content("Music", false, ContentType.INTEREST, R.drawable.ic_interest),
             Content("Photography", false, ContentType.INTEREST, R.drawable.ic_interest),
-            Content("Books", false,ContentType.INTEREST,  R.drawable.ic_interest),
-            Content("Arts", false, ContentType.INTEREST, R.drawable.ic_interest,),
+            Content("Books", false, ContentType.INTEREST, R.drawable.ic_interest),
+            Content("Arts", false, ContentType.INTEREST, R.drawable.ic_interest),
             Content(
                 "Not Suggested? Add yours...",
                 false,
@@ -225,8 +226,8 @@ object DataResourceGenerator {
 
     fun provideGifts(): MutableList<Content> =
         mutableListOf(
-            Content("Cake", false, ContentType.GIFT, R.drawable.ic_gift_boxes,),
-            Content("Shoes", false, ContentType.GIFT, R.drawable.ic_gift_boxes,),
+            Content("Cake", false, ContentType.GIFT, R.drawable.ic_gift_boxes),
+            Content("Shoes", false, ContentType.GIFT, R.drawable.ic_gift_boxes),
             Content("Headsets", false, ContentType.GIFT, R.drawable.ic_gift_boxes),
             Content("Mobile Phone", false, ContentType.GIFT, R.drawable.ic_gift_boxes),
             Content("Books", false, ContentType.GIFT, R.drawable.ic_gift_boxes),
@@ -235,6 +236,38 @@ object DataResourceGenerator {
                 false,
                 ContentType.NEUTRAL,
                 R.drawable.ic_gift_boxes
+            )
+        )
+
+    fun provideExploreGift(): MutableList<ExploreGift> =
+        mutableListOf(
+            ExploreGift(
+                giftImage = "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixid=MnwyNDkyNzB8MHwxfHNlYXJjaHwyfHxwcm9kdWN0fGVufDB8fHx8MTYyNzI4OTYwMQ&ixlib=rb-1.2.1",
+                giftTitle = "HeadPhone"
+            ),
+            ExploreGift(
+                giftImage = "https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixid=MnwyNDkyNzB8MHwxfHNlYXJjaHw1fHxwcm9kdWN0fGVufDB8fHx8MTYyNzI4OTYwMQ&ixlib=rb-1.2.1",
+                giftTitle = "HeadPhone"
+            ),
+            ExploreGift(
+                giftImage = "https://images.unsplash.com/photo-1487700160041-babef9c3cb55?ixid=MnwyNDkyNzB8MHwxfHNlYXJjaHw2fHxwcm9kdWN0fGVufDB8fHx8MTYyNzI4OTYwMQ&ixlib=rb-1.2.1",
+                giftTitle = "HeadPhone"
+            ),
+            ExploreGift(
+                giftImage = "https://images.unsplash.com/photo-1527176930608-09cb256ab504?ixlib=rb-1.2.1",
+                giftTitle = "HeadPhone"
+            ),
+            ExploreGift(
+                giftImage = "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?ixlib=rb-1.2.1",
+                giftTitle = "HeadPhone"
+            ),
+            ExploreGift(
+                giftImage = "https://images.unsplash.com/photo-1553456558-aff63285bdd1?ixid=MnwyNDkyNzB8MHwxfHNlYXJjaHw3fHxwcm9kdWN0fGVufDB8fHx8MTYyNzI4OTYwMQ&ixlib=rb-1.2.1",
+                giftTitle = "HeadPhone"
+            ),
+            ExploreGift(
+                giftImage = "https://images.unsplash.com/photo-1503602642458-232111445657?ixid=MnwyNDkyNzB8MHwxfHNlYXJjaHw4fHxwcm9kdWN0fGVufDB8fHx8MTYyNzI4OTYwMQ&ixlib=rb-1.2.1",
+                giftTitle = "HeadPhone"
             )
         )
 

@@ -13,7 +13,9 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.birthyaay.R
 import com.example.birthyaay.adapters.GiftsAdapter
 import com.example.birthyaay.adapters.InterestsAdapter
@@ -49,6 +51,7 @@ class ExtraInfoFragment : Fragment(R.layout.fragment_extra_info) {
             extraInfoFragment.arguments = bundle
             return extraInfoFragment
         }
+
         const val RECYCLER_VIEW_IMAGE_SPAN_COUNT = 2
     }
 
@@ -61,6 +64,7 @@ class ExtraInfoFragment : Fragment(R.layout.fragment_extra_info) {
 
         }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentExtraInfoBinding.bind(view)
@@ -70,7 +74,15 @@ class ExtraInfoFragment : Fragment(R.layout.fragment_extra_info) {
         )
 
         picturesAdapter = PicturesAdapter(
-            onItemClick = { pictureUrl ->
+            onLongClick = { pictureUrl ->
+
+                val menuBottomSheetDialog =
+                    MenuBottomSheetDialog.newInstance(MenuBottomSheetDialog.CONTENT_TYPE_PICTURE)
+
+                menuBottomSheetDialog.show(
+                    parentFragmentManager.beginTransaction(),
+                    MenuBottomSheetDialog.TAG
+                )
 
             }
         )
@@ -88,7 +100,7 @@ class ExtraInfoFragment : Fragment(R.layout.fragment_extra_info) {
                 celebrant?.interests?.filter { it.title != getString(R.string.not_suggested_str) }
                     ?.map {
                         Interest(it.title.trim())
-                    }
+                    } as MutableList<Interest>
             val gifts =
                 celebrant?.gifts?.filter { it.title != getString(R.string.not_suggested_str) }
                     ?.map {
@@ -97,12 +109,31 @@ class ExtraInfoFragment : Fragment(R.layout.fragment_extra_info) {
 
 
             interestRv.apply {
-                adapter = interests?.let { interests -> InterestsAdapter(interests) }
+                adapter = InterestsAdapter(interests)
                 layoutManager = LinearLayoutManager(requireContext())
+
+                val swipeHandler = provideSwipeHandler()
+                val itemTouchHelper = ItemTouchHelper(swipeHandler)
+                itemTouchHelper.attachToRecyclerView(this)
+
             }
 
             giftRv.apply {
-                adapter = gifts?.let { gifts -> GiftsAdapter(gifts) }
+                adapter = gifts?.let { gifts ->
+                    GiftsAdapter(gifts,
+                        onLongClick = {
+
+                            val menuBottomSheetDialog =
+                                MenuBottomSheetDialog.newInstance(MenuBottomSheetDialog.CONTENT_TYPE_GIFT)
+
+                            menuBottomSheetDialog.show(
+                                parentFragmentManager.beginTransaction(),
+                                MenuBottomSheetDialog.TAG
+                            )
+
+                        }
+                    )
+                }
                 layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             }
@@ -164,6 +195,14 @@ class ExtraInfoFragment : Fragment(R.layout.fragment_extra_info) {
 
     }
 
+    private fun provideSwipeHandler(): SwipeToDeleteCallback {
+        return object : SwipeToDeleteCallback(requireContext()) {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val adapter = binding.interestRv.adapter as InterestsAdapter
+                adapter.removeAt(viewHolder.adapterPosition)
+            }
+        }
+    }
 
     override fun onRequestPermissionsResult(
         requestCode: Int,

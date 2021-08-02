@@ -1,19 +1,27 @@
 package com.example.birthyaay.ui
 
 import android.content.pm.PackageManager
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
 import android.text.SpannableStringBuilder
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupWindow
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import androidx.core.widget.addTextChangedListener
+import androidx.core.widget.doAfterTextChanged
+import androidx.core.widget.doBeforeTextChanged
+import androidx.core.widget.doOnTextChanged
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.birthyaay.R
@@ -32,6 +40,8 @@ import com.example.navigation.navigation.model.Content
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.snackbar.Snackbar
 import com.example.navigation.navigation.model.ContentType
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 
 class AddCelebrantFragment : Fragment() {
     private var _binding: FragmentAddCelebrantBinding? = null
@@ -47,6 +57,11 @@ class AddCelebrantFragment : Fragment() {
             }
 
         }
+
+    companion object {
+        const val NAME = "name"
+        const val NAME_ERROR_MESSAGE = "Name must be at least 2 characters long."
+    }
 
 
     override fun onCreateView(
@@ -92,6 +107,8 @@ class AddCelebrantFragment : Fragment() {
                 }
 
             })
+
+            validateFields()
 
             fragmentAddCelebrantInc.addCelebrantInterestEt.setOnClickListener {
 
@@ -152,75 +169,20 @@ class AddCelebrantFragment : Fragment() {
 
             fragmentAddCelebrantInc.submitBtn.setOnClickListener {
 
-                fragmentAddCelebrantInc.apply {
-                    val name = addCelebrantNameEt.editText?.text.toString()
-                    val phoneNumber = addCelebrantPhoneEt.editText?.text.toString()
-                    val email = addCelebrantEmailEt.editText?.text.toString()
-                    val dateOfBirth = if (addCelebrantDateEt.text.toString() != getString(R.string.date_of_birth_str)){
-                        addCelebrantDateEt.text.toString()
-                    } else {
-                        ""
-                    }
-                    val interestsInString = if (addCelebrantInterestEt.text.toString()
-                        != getString(R.string.label_interests_str)
-                    ) {
-                        addCelebrantInterestEt.text.toString()
-                    } else {
-                        ""
-                    }
-                    val interests = if (interestsInString.trim().isNotEmpty()) {
-                        interestsInString
-                            .split(",")
-                            .map {
-                                Content(it, true, ContentType.INTEREST)
-                            }
-                    } else {
-                        emptyList()
-                    }
-
-                    val giftsInString = if (addCelebrantGiftEt.text.toString()
-                        != getString(R.string.label_choose_gift_categories_str)
-                    ) {
-                        addCelebrantGiftEt.text.toString()
-                    } else {
-                        ""
-                    }
-
-                    val gifts = if (giftsInString.trim().isNotEmpty()) {
-                        giftsInString
-                            .split(",")
-                            .map {
-                                Content(it, true, ContentType.GIFT)
-                            }
-                    } else {
-                        emptyList()
-                    }
-
-
-                    val pictureUri = imageUri.toString()
-                    val note = addCelebrantNoteEt.editText?.text.toString()
-
-                    val celebrant = Celebrant(
-                        name = name,
-                        phoneNumber = phoneNumber,
-                        email = email,
-                        dateOfBirth = dateOfBirth,
-                        interests = interests,
-                        gifts = gifts,
-                        image = listOf(pictureUri),
-                        note = note
-                    )
-
-                    val actions =
-                        AddCelebrantFragmentDirections
-                            .actionAddCelebrantFragmentToCelebrantDetailsFragment(celebrant)
-                    findNavController().navigate(actions)
+                if (fragmentAddCelebrantInc.addCelebrantDateEt.text.toString() == getString(R.string.date_of_birth_str)) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Date of Birth can't be empty.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    collectCelebrantData()
                 }
-
 
             }
 
         }
+
     }
 
     override fun onResume() {
@@ -296,6 +258,111 @@ class AddCelebrantFragment : Fragment() {
                 it.dismiss()
             }
             giftPopupWindow = null
+        }
+    }
+
+
+    private fun String.validateStringLen(): Boolean {
+        return this.length >= 2
+    }
+
+
+    private fun validateFields() {
+        binding.apply {
+            fragmentAddCelebrantInc.apply {
+                addCelebrantNameEt.editText?.doOnTextChanged { text, start, before, count ->
+                    if (!text.toString().trim().validateStringLen()) {
+                        addCelebrantNameEt.error = NAME_ERROR_MESSAGE
+                        submitBtn.isEnabled = false
+                        submitBtn.backgroundTintList = ColorStateList.valueOf(
+                            ContextCompat.getColor(
+                                requireContext(),
+                                R.color.grey_70
+                            )
+                        )
+                    } else {
+                        addCelebrantNameEt.error = null
+                        submitBtn.isEnabled = true
+                        submitBtn.backgroundTintList = ColorStateList.valueOf(
+                            ContextCompat.getColor(
+                                requireContext(),
+                                R.color.purple_100
+                            )
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+
+    fun collectCelebrantData() {
+        binding.apply {
+            fragmentAddCelebrantInc.apply {
+                val name = addCelebrantNameEt.editText?.text.toString()
+                val phoneNumber = addCelebrantPhoneEt.editText?.text.toString()
+                val email = addCelebrantEmailEt.editText?.text.toString()
+                val dateOfBirth =
+                    if (addCelebrantDateEt.text.toString() != getString(R.string.date_of_birth_str)) {
+                        addCelebrantDateEt.text.toString()
+                    } else {
+                        ""
+                    }
+                val interestsInString = if (addCelebrantInterestEt.text.toString()
+                    != getString(R.string.label_interests_str)
+                ) {
+                    addCelebrantInterestEt.text.toString()
+                } else {
+                    ""
+                }
+                val interests = if (interestsInString.trim().isNotEmpty()) {
+                    interestsInString
+                        .split(",")
+                        .map {
+                            Content(it, true, ContentType.INTEREST)
+                        }
+                } else {
+                    emptyList()
+                }
+
+                val giftsInString = if (addCelebrantGiftEt.text.toString()
+                    != getString(R.string.label_choose_gift_categories_str)
+                ) {
+                    addCelebrantGiftEt.text.toString()
+                } else {
+                    ""
+                }
+
+                val gifts = if (giftsInString.trim().isNotEmpty()) {
+                    giftsInString
+                        .split(",")
+                        .map {
+                            Content(it, true, ContentType.GIFT)
+                        }
+                } else {
+                    emptyList()
+                }
+
+
+                val pictureUri = imageUri.toString()
+                val note = addCelebrantNoteEt.editText?.text.toString()
+
+                val celebrant = Celebrant(
+                    name = name,
+                    phoneNumber = phoneNumber,
+                    email = email,
+                    dateOfBirth = dateOfBirth,
+                    interests = interests,
+                    gifts = gifts,
+                    image = listOf(pictureUri),
+                    note = note
+                )
+
+                val actions =
+                    AddCelebrantFragmentDirections
+                        .actionAddCelebrantFragmentToCelebrantDetailsFragment(celebrant)
+                findNavController().navigate(actions)
+            }
         }
     }
 

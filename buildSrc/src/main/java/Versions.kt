@@ -18,6 +18,7 @@ object Versions {
     val glideVersion = "4.12.0"
     val coilVersion = "1.2.2"
     val fragmentKtx = "1.3.5"
+    val paletteVersion = "28.0.0"
 
     //test
     val junit = "4.12"

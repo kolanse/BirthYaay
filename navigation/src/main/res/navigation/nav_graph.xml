@@ -23,8 +23,8 @@
     </fragment>
 
     <fragment
-        android:id="@+id/giftsFragment"
-        android:name="com.example.birthyaay.ui.GiftsFragment"
+        android:id="@+id/exploreGiftFragment"
+        android:name="com.example.birthyaay.ui.ExploreGiftFragment"
         android:label="Gifts" />
 
     <fragment

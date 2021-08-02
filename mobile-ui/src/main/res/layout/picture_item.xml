@@ -6,7 +6,7 @@
     android:padding="@dimen/size_5"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
+    <com.example.birthyaay.custom_views.textviews.shimmer.CustomImageView
         android:id="@+id/image_iv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

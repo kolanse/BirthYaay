@@ -7,7 +7,7 @@ import com.example.birthyaay.databinding.InterestItemBinding
 import com.example.birthyaay.models.Interest
 import com.example.birthyaay.shared.InterestsViewHolder
 
-class InterestsAdapter(private val interests: List<Interest>): RecyclerView.Adapter<InterestsViewHolder>() {
+class InterestsAdapter(private val interests: MutableList<Interest>): RecyclerView.Adapter<InterestsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InterestsViewHolder {
         val binding = InterestItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -19,4 +19,10 @@ class InterestsAdapter(private val interests: List<Interest>): RecyclerView.Adap
     }
 
     override fun getItemCount(): Int = interests.size
+
+    fun removeAt(position: Int) {
+        interests.removeAt(position)
+        notifyItemRemoved(position)
+    }
+
 }

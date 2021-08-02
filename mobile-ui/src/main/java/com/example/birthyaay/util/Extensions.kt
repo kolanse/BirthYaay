@@ -29,10 +29,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.example.birthyaay.R
 import com.example.birthyaay.adapters.GiftsOrInterestsAdapter
-import com.example.birthyaay.databinding.FragmentAddCelebrantBinding
-import com.example.birthyaay.databinding.FragmentCelebrantDetailsBinding
-import com.example.birthyaay.databinding.FragmentHomeBinding
-import com.example.birthyaay.databinding.FragmentPeopleBinding
+import com.example.birthyaay.databinding.*
 import com.example.navigation.navigation.model.Content
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.button.MaterialButton
@@ -126,6 +123,15 @@ fun Fragment.isShowOrHideView(isShow: Boolean, binding: ViewBinding) {
                 fragmentCelebrantDetailsTitleTv.isVisible = isShow
                 //fragmentAddCelebrantToolbar.isVisible = !isShow
                 fragmentCelebrantDetailsToolbarIv.isVisible = !isShow
+            }
+        }
+
+        is FragmentExploreGiftBinding -> {
+            binding.apply {
+                //fragmentExploreGiftsIv.isVisible = isShow
+                //fragmentExploreGiftsTitleTv.isVisible = isShow
+                //fragmentAddCelebrantToolbar.isVisible = !isShow
+                fragmentHomeLoveToolbarIv.isVisible = !isShow
             }
         }
     }

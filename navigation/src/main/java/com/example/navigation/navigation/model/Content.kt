@@ -13,5 +13,5 @@ data class Content(
 ): Parcelable
 
 enum class ContentType {
-    GIFT, INTEREST, NEUTRAL
+    GIFT, INTEREST, PICTURE, NEUTRAL
 }
